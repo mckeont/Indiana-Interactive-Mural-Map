@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>Indianapolis Art</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: whitesmoke;
+            font-family: Lato, sans-serif;
+            color: #0D0000;
+        }
+        header {
+            padding: 6px 10%;
+        }
+        h1 {
+            display: inline-block;
+            margin-right: 20px;
+            color: #001323;
+        }
+        h2 {
+            display: inline-block;
+            color: #001323;
+        }
+        #map {
+            width: 80%;
+            height: 540px;
+            margin: 10px auto;
+        }
+        footer {
+            padding: 6px 10%;
+            width: 80%;
+        }
+        p {
+            font-size: 1em;
+            color: #001323;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Indiana</h1><br>
+        <h2>Counties</h2>
+    </header>
+
+    <div id='map'></div>
+
+    <footer>
+        <p>Rok h</p>
+        <p>Zipcodes of Merion County, Indiana.</p>
+    </footer>
+    
+//Filter by areas that are predominately black, white, latino
+    //Filter by latino artists, asian artists, black artists and also women artists
+ 
+
+    
+    //Select by Attributes by ethnicity and by gender from the all_artworks.js file
+    //Left with female artists, black artists, asian artists and latino artists
+    //remove Zionsville from zip_code_boundaries
+<!--<script src=counties.js></script>-->
+<script src=a0000000e.js></script>
+<script src=all_artworks.js></script> //done
+<script src=ZIPcodes_withArttype.js></script>
+<script src=Roads.js></script> //latitude and longitude are different and not formatted correctly
+<script src=MostWealthy_top3.js></script> //done
+<script src=MostPooresttop3.js></script> //done
+<script src=Majority_ethnicity.js></script> //done
+<script src=K12Schools.js></script> //done
+<script src=DangerousTop3.js></script> //done
+<script src=Crimes.js></script> //cannot be added at this time
+<script src=Colleges.js></script> //latitude longitude are different from coordinates and not appearing on the map
+<script src=Census_withDemographics.js></script> //similar to majority ethnicity. Should it still be added?
+<script src=Artwork150meter_bus.js></script> //done
+<script src=art1500mcollege.js></script>
+<script src=all_artworks.js></script> //done
+<script src=ZIPcodes_withArttype.js></script>  //done
+<script src=ZIPcodes_withArttype_one.js></script>  //done
+<script src=ZIP_Code_Boundaries.js></script>   //done
+<script src=women_artists.js></script>   //done
+<script src=black_artists.js></script>   //done
+<script src=Asian_artists.js></script>   //done   
+<script src=Latino_artists.js></script>   //done
+
+    
+    <script>
+
+
+      var map = L.map('map', {
+          center: [39.815434056673546, -86.14474102611857],
+          zoom: 10,
+      });
+        
+      
+      var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+          subdomains: 'abcd',
+          maxZoom: 19
+      });  
+      
+      tiles.addTo(map);
+//      
+       
+         
+        
+        
+        var artworkcollege = L.geoJson(art1500mcollege, {
+          pointToLayer: function(feature,coordinates) {
+              console.log(feature.properties.Title_of_A)
+              return L.circle(coordinates, {
+                 color: 'purple',
+                 weight: 2//step4
+              });   
+          },
+    onEachFeature : function(feature,layer) {
+    layer.on('mouseover', function() {
+    layer.setStyle({
+        fillColor: 'red',
+        stroke: 11
+    });
+});
+    layer.on('mouseout', function() {
+    layer.setStyle({
+        fillColor: 'purple',
+        stroke: 11
+    });
+});
+    
+
+          var title = feature.properties.Title_of_A
+          var leadartist = feature.properties.Lead_Artis
+
+          var popup = ( "<b>"+ "Artwork Title: "+ "</b>" + title + "<b>"+ "Lead Artist: "+ "</b>" + leadartist)
+             layer.bindPopup(popup)
+          }        
+      }).addTo(map);  
+        
+        
+    
+        
+        
+        
+        
+        
+        
+        
+                
+            var artworkbus = L.geoJson(artwork150meterbus, {
+          pointToLayer: function(feature,coordinates) {
+              console.log(feature.properties.Title_of_A)
+              return L.circle(coordinates, {
+                 color: 'purple',
+                 weight: 2//step4
+              });   
+          },
+    onEachFeature : function(feature,layer) {
+    layer.on('mouseover', function() {
+    layer.setStyle({
+        fillColor: 'red',
+        stroke: 11
+    });
+});
+    layer.on('mouseout', function() {
+    layer.setStyle({
+        fillColor: 'purple',
+        stroke: 11
+    });
+});
+    
+
+          var title = feature.properties.Title_of_A
+          var leadartist = feature.properties.Lead_Artis
+
+          var popup = ( "<b>"+ "Artwork Title: "+ "</b>" + title + "<b>"+ "Lead Artist: "+ "</b>" + leadartist)
+             layer.bindPopup(popup)
+          }        
+      }).addTo(map);   
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+            var k12 = L.geoJson(k12schools, {
+          pointToLayer: function(feature,coordinates) {
+              console.log(feature.properties.coordinates)
+              return L.circle(coordinates, {
+                 color: 'green',
+                 weight: 2//step4
+              });   
+          },
+    onEachFeature : function(feature,layer) {
+    layer.on('mouseover', function() {
+    layer.setStyle({
+        fillColor: 'red',
+        stroke: 11
+    });
+});
+    layer.on('mouseout', function() {
+    layer.setStyle({
+        fillColor: 'green',
+        stroke: 11
+    });
+});
+    
+
+          var school = feature.properties.SCHOOL
+
+          var popup = ( "<b>"+ "Name: "+ "</b>" + school)
+             layer.bindPopup(popup)
+          }        
+      }).addTo(map);   
+
+        
+        
+                  
+            var ethnicity = L.geoJson(majority_ethnicity, {
+          pointToLayer: function(feature,coordinates) {
+              console.log(feature.properties.coordinates)
+              return L.polygon(coordinates, {
+                 color: 'green',
+                 weight: 6//step4
+              });   
+          },
+    onEachFeature : function(feature,layer) {
+    layer.on('mouseover', function() {
+    layer.setStyle({
+        fillColor: 'green',
+        stroke: 11
+    });
+});
+    layer.on('mouseout', function() {
+    layer.setStyle({
+        fillColor: 'green',
+        stroke: 11
+    });
+});
+    
+
+          var ethn = feature.properties.MajorityEt
+
+          var popup = ( "<b>"+ "Ethnic Majority: "+ "</b>" + ethn)
+             layer.bindPopup(popup)
+          }        
+      }).addTo(map);   
+
+        
+            var mostpooresttop3 = L.geoJson(mostpooresttop3, {
+          pointToLayer: function(feature,coordinates) {
+              console.log(feature.properties.coordinates)
+              return L.polygon(coordinates, {
+                 color: 'red',
+                 weight: 1//step4
+              });   
+          },
+    onEachFeature : function(feature,layer) {
+    layer.on('mouseover', function() {
+    layer.setStyle({
+        fillColor: 'green',
+        stroke: 11
+    });
+});
+    layer.on('mouseout', function() {
+    layer.setStyle({
+        fillColor: 'red',
+        stroke: 11
+    });
+});
+    
+
+          var population = feature.properties.Population
+
+          var popup = ( "<b>"+ "Population: "+ "</b>" + population)
+             layer.bindPopup(popup)
+          }        
+      }).addTo(map);     
+        
+        
+        
+        
+        
+        
+        
+    
+    var all_artworks = L.geoJson(all_artworks, {
+          pointToLayer: function(feature,coordinates) {
+              console.log(feature.properties.coordinates)
+              return L.circle(coordinates, {
+                 color: 'yellow',
+                 weight: 1//step4
+              });   
+          },
+    onEachFeature : function(feature,layer) {
+    layer.on('mouseover', function() {
+    layer.setStyle({
+        fillColor: 'green',
+        stroke: 11
+    });
+});
+    layer.on('mouseout', function() {
+    layer.setStyle({
+        fillColor: 'yellow',
+        stroke: 11
+    });
+});
+    
+
+          var Title_of_A = feature.properties.Title_of_A
+          var Lead_Artis = feature.properties.Lead_Artis
+          var Type = feature.properties.Type
+          var Condition = feature.properties.Condition
+          var popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>"+ "Lead Artist: "+ "</b>" + Lead_Artis + "<br>"+ "<b>"+ "Type: "+ "</b>" + Type + "<br>" + "<b>"+ "Condition: "+ "</b>" + Condition + "<br>" + "<b>"+ "URL: "+ "</b>" + "https://www.visitindy.com/")
+             layer.bindPopup(popup)
+          }        
+      }).addTo(map);     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      var ZIPcodes_withArttype = L.geoJson(ZIPcodes_withArttype, {
+          pointToLayer: function(feature,coordinates) {
+              console.log(feature.properties.Lead_Artis)
+              return L.polygon(coordinates, {
+                 color: 'grey',
+                 weight: 1
+              });   
+          },
+    onEachFeature : function(feature,layer) {
+    layer.on('mouseover', function() {
+    layer.setStyle({
+        fillColor: 'green',
+        stroke: 11
+    });
+});
+    layer.on('mouseout', function() {
+    layer.setStyle({
+        fillColor: 'grey',
+        stroke: 11
+    });
+});
+
+
+          var lead_artist = feature.properties.Lead_Artis
+          var title = feature.properties.Title_of_A
+          var popup = ("<b>"+ "Lead Artist: "+ "</b>" + "<br>"+ lead_artist + "<b>"+ "Title of Artwork: " + "</b>" + title)
+             layer.bindPopup(popup)
+          }
+      
+      }).addTo(map);    
+        
+        
+        
+        
+        
+        
+          var DangerousTop3 = L.geoJson(dangeroustop3, {
+          pointToLayer: function(feature,coordinates) {
+              console.log(feature.properties.CRIMES)
+              return L.polygon(coordinates, {
+                 color: '#ff7800',
+                 weight: 3//step4
+              });   
+          },
+              
+    onEachFeature : function(feature,layer) {
+    layer.on('mouseover', function() {
+    layer.setStyle({
+        fillColor: '#yellow',
+        stroke: 11
+    });
+});
+    layer.on('mouseout', function() {
+    layer.setStyle({
+        fillColor: '#ff7800',
+        stroke: 11
+    });
+});
+
+         
+          var crime = feature.properties.CRIMES
+          var popup = ("<b>"+ "Crime: "+ "</b>" + crime)
+          layer.bindPopup(popup)
+          }   
+      }).addTo(map);
+        
+        
+        
+        
+        
+    
+          var ZIP_Code_Boundaries =  L.geoJson(ZIPcodes_withArttype_one, {
+          pointToLayer: function(feature,coordinates) {
+              console.log(feature.properties.type)
+              return L.polyline(coordinates, {
+                 color: 'green',
+                 weight: 3//step4
+              });   
+          },
+              
+    onEachFeature : function(feature,layer) {
+    layer.on('mouseover', function() {
+    layer.setStyle({
+        fillColor: 'red',
+        stroke: 5
+    });
+});
+    layer.on('mouseout', function() {
+    layer.setStyle({
+        fillColor: 'green',
+        stroke: 11
+    });
+});
+          var zipcode = feature.properties.GEOID10 
+          var popup = ("<b>"+ "Type: "+ "</b>" + zipcode)
+             layer.bindPopup(popup)
+          }   
+      }).addTo(map);
+        
+        
+        
+    
+      var mostwealthytop3 = L.geoJson(mostwealthytop3, {
+          pointToLayer: function(feature,coordinates) {
+              console.log(feature.properties.coordinates)
+              return L.polyline(coordinates, {
+                 color: 'yellow',
+                 weight: 1//step4
+              });   
+          },
+    onEachFeature : function(feature,layer) {
+    layer.on('mouseover', function() {
+    layer.setStyle({
+        fillColor: 'green',
+        stroke: 11
+    });
+});
+    layer.on('mouseout', function() {
+    layer.setStyle({
+        fillColor: 'yellow',
+        stroke: 11
+    });
+});
+
+
+          var test = feature.properties.coordinates
+          var popup = ("<b>"+ "Coordinates: "+ "</b>" + "<br>"+ test)
+             layer.bindPopup(popup)
+          }        
+      }).addTo(map);
+        
+        
+        
+        
+              var women = L.geoJson(women, {
+          pointToLayer: function(feature,coordinates) {
+              console.log(feature.properties.coordinates)
+              return L.circle(coordinates, {
+                 color: 'yellow',
+                 weight: 1//step4
+              });   
+          },
+    onEachFeature : function(feature,layer) {
+    layer.on('mouseover', function() {
+    layer.setStyle({
+        fillColor: 'green',
+        stroke: 11
+    });
+});
+    layer.on('mouseout', function() {
+    layer.setStyle({
+        fillColor: 'yellow',
+        stroke: 11
+    });
+});
+
+
+          var title = feature.properties.Title_of_A
+          var popup = ("<b>"+ "Title of Artwork: "+ "</b>" + "<br>"+ title)
+             layer.bindPopup(popup)
+          }        
+      }).addTo(map);
+        
+        
+        
+                   var black = L.geoJson(Black, {
+          pointToLayer: function(feature,coordinates) {
+              console.log(feature.properties.coordinates)
+              return L.circle(coordinates, {
+                 color: 'yellow',
+                 weight: 1//step4
+              });   
+          },
+    onEachFeature : function(feature,layer) {
+    layer.on('mouseover', function() {
+    layer.setStyle({
+        fillColor: 'green',
+        stroke: 11
+    });
+});
+    layer.on('mouseout', function() {
+    layer.setStyle({
+        fillColor: 'yellow',
+        stroke: 11
+    });
+});
+
+
+          var title = feature.properties.Title_of_A
+          var popup = ("<b>"+ "Title of Artwork: "+ "</b>" + "<br>"+ title)
+             layer.bindPopup(popup)
+          }        
+      }).addTo(map);
+        
+ 
+        
+                
+                   var latino = L.geoJson(Latino, {
+          pointToLayer: function(feature,coordinates) {
+              console.log(feature.properties.coordinates)
+              return L.circle(coordinates, {
+                 color: 'yellow',
+                 weight: 1//step4
+              });   
+          },
+    onEachFeature : function(feature,layer) {
+    layer.on('mouseover', function() {
+    layer.setStyle({
+        fillColor: 'green',
+        stroke: 11
+    });
+});
+    layer.on('mouseout', function() {
+    layer.setStyle({
+        fillColor: 'yellow',
+        stroke: 11
+    });
+});
+
+
+          var title = feature.properties.Title_of_A
+          var popup = ("<b>"+ "Title of Artwork: "+ "</b>" + "<br>"+ title)
+             layer.bindPopup(popup)
+          }        
+      }).addTo(map);
+        
+        
+                
+                   var asian = L.geoJson(Asian_artists, {
+          pointToLayer: function(feature,coordinates) {
+              console.log(feature.properties.coordinates)
+              return L.circle(coordinates, {
+                 color: 'yellow',
+                 weight: 1//step4
+              });   
+          },
+    onEachFeature : function(feature,layer) {
+    layer.on('mouseover', function() {
+    layer.setStyle({
+        fillColor: 'green',
+        stroke: 11
+    });
+});
+    layer.on('mouseout', function() {
+    layer.setStyle({
+        fillColor: 'yellow',
+        stroke: 11
+    });
+});
+
+
+          var title = feature.properties.Title_of_A
+          var popup = ("<b>"+ "Title of Artwork: "+ "</b>" + "<br>"+ title)
+             layer.bindPopup(popup)
+          }        
+      }).addTo(map);
+        
+        
+        
+        
+      
+  
+            var sourceLayers = {        
+             "Zipcode": ZIP_Code_Boundaries, 
+             "Artwork 150 Meters from a Bus Stop": artworkbus, 
+             "Artwork 1500 Meters from a College": artworkcollege, 
+             "Schools": k12,
+             "Majority Ethnicity": ethnicity, 
+             "Top Three Poorest Zipcodes": mostpooresttop3,
+             "Top Three Dangerous Zipcodes": DangerousTop3, //name that you're giving the layer first and then variable
+             "Top Three Wealthy Top Three Zipcodes": mostwealthytop3,
+             "Zip Codes with Art Type": ZIPcodes_withArttype,
+             "All Artworks": all_artworks,
+             "Women Artists": women,
+             "Black Artists": black,
+             "Latino/a/e Artists": latino,
+             "Asian Artists": asian
+         }
+                  
+    
+            //change these hex codes to light grey
+        var sourceLayers = {    
+            "<b style='color:#000000'>Zipcode</b>": ZIP_Code_Boundaries,  
+            "<b style='color:#000000'>Women Artists</b>": women, 
+            "<b style='color:#000000'>Black Artists</b>": black, 
+            "<b style='color:#000000'>Latino/a/e Artists</b>": latino, 
+            "<b style='color:#000000'>Asian Artists</b>": asian,
+            "<b style='color:#000000'>Artwork 150 Meters from a Bus Stop</b>": artworkbus, 
+            "<b style='color:#000000'>Artwork 1500 Meters from a College</b>": artworkcollege,  
+            "<b style='color:#000000'>Schools</b>": k12, 
+            "<b style='color:#000000'>Majority Ethnicity</b>": ethnicity, 
+            "<b style='color:#000000'>Top Three Poorest Zipcodes</b>": mostpooresttop3, 
+            "<b style='color:#000000'>Top Three Dangerous Zipcodes</b>": DangerousTop3, 
+            "<b style='color:#000000'>Top Three Wealthy Zipcodes</b>": mostwealthytop3, 
+            "<b style='color:#000000'>Zipcodes and Art Type</b>": ZIPcodes_withArttype, 
+            "<b style='color:#000000'>All Artworks</b>": all_artworks}
+         
+         L.control.layers(null, sourceLayers, {collapsed:true}).addTo(map);
+//        
+        
+          
+   </script>
+    
+</body>
+
+</html>
