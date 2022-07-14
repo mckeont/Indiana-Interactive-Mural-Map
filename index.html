@@ -10,10 +10,6 @@
 <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 
-    
-
-    
-    
     <style>
         body {
             margin: 0;
@@ -62,62 +58,41 @@
         <p>R okh</p>
         <p>Art Census 2021.</p>
     </footer>
-    
 
-<!--<script src=counties.js></script>-->
-<script src=a0000000e.js></script>
-<script src=all_artworks.js></script> 
-<script src=ZIPcodes_withArttype.js></script>
-<script src=Roads.js></script> 
-<script src=MostWealthy_top3.js></script> 
-<script src=MostPooresttop3.js></script> 
-<script src=Majority_ethnicity.js></script> 
-<script src=K12Schools.js></script> 
-<script src=DangerousTop3.js></script> 
-<script src=Crimes.js></script> 
-<script src=Colleges.js></script> 
-<script src=Census_withDemographics.js></script> 
-<script src=Artwork150meter_bus.js></script> 
-<script src=art1500mcollege.js></script>
-<script src=all_artworks.js></script> 
-<script src=ZIPcodes_withArttype.js></script>  
-<script src=ZIPcodes_withArttype_one.js></script>  
-<script src=ZIP_Code_Boundaries.js></script>  
-<script src=women_artists.js></script>   
-<script src=black_artists.js></script>   
-<script src=Asian_artists.js></script>      
-<script src=Latino_artists.js></script>   
-<script src=Federal_Promise_Zone.js></script>
- <script src=collections2.js></script> 
-     <script src=opportunityzone.js></script> 
+
+<script src=js/setup.js></script>
+<script src=js/a0000000e.js></script>
+<script src=js/all_artworks.js></script>
+<script src=js/ZIPcodes_withArttype.js></script>
+<script src=js/Roads.js></script>
+<script src=js/MostWealthy_top3.js></script>
+<script src=js/MostPooresttop3.js></script>
+<script src=js/Majority_ethnicity.js></script>
+<script src=js/K12Schools.js></script>
+<script src=js/DangerousTop3.js></script>
+<script src=js/Crimes.js></script>
+<script src=js/Colleges.js></script>
+<script src=js/Census_withDemographics.js></script>
+<script src=js/Artwork150meter_bus.js></script>
+<script src=js/art1500mcollege.js></script>
+<script src=js/ZIPcodes_withArttype_one.js></script>
+<script src=js/women_artists.js></script>
+<script src=js/black_artists.js></script>
+<script src=js/Asian_artists.js></script>
+<script src=js/Latino_artists.js></script>
+<script src=js/Federal_Promise_Zone.js></script>
+<script src=js/collections2.js></script>
+<script src=js/opportunityzone.js></script>
     <script>
 
 
-      var map = L.map('map', {
-          center: [39.815434056673546, -86.14474102611857],
-          zoom: 10,
-      });
-        
-      
-      var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
-          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-          subdomains: 'abcd',
-          maxZoom: 19
-      });  
-      
-      tiles.addTo(map);
-//      
-       
-         
-        
-        
+
         var artworkcollege = L.geoJson(art1500mcollege, {
           pointToLayer: function(feature,coordinates) {
-              console.log(feature.properties.Title_of_A)
               return L.circle(coordinates, {
                  color: 'purple',
                  weight: 2//step4
-              });   
+              });
           },
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
@@ -132,33 +107,24 @@
         stroke: 11
     });
 });
-    
+
 
           var title = feature.properties.Title_of_A
           var leadartist = feature.properties.Lead_Artis
+          var Address = feature.properties.Address
 
-          var popup = ( "<b>"+ "Artwork Title: "+ "</b>" + title + "<b>"+ "Lead Artist: "+ "</b>" + leadartist)
+          var popup = ( "<b>"+ "Artwork Title: "+ "</b>" + title + "<b>"+ "Lead Artist: "+ "</b>" + leadartist
+         + "</br>" + "<b>"+ "Address: "+ "</b>" + Address)
              layer.bindPopup(popup)
-          }        
-      }).addTo(map);  
-        
-        
-    
-  
-        
-        
-        
-        
-        
-        
-                
+          }
+      });
+
             var artworkbus = L.geoJson(artwork150meterbus, {
           pointToLayer: function(feature,coordinates) {
-              console.log(feature.properties.Title_of_A)
               return L.circle(coordinates, {
                  color: '#2a9d8f',
                  weight: 2//step4
-              });   
+              });
           },
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
@@ -173,31 +139,25 @@
         stroke: 11
     });
 });
-    
+
 
           var title = feature.properties.Title_of_A
           var leadartist = feature.properties.Lead_Artis
+          var Address = feature.properties.Address
 
-          var popup = ( "<b>"+ "Artwork Title: "+ "</b>" + title + "<b>"+ "Lead Artist: "+ "</b>" + leadartist)
+          var popup = ( "<b>"+ "Artwork Title: "+ "</b>" + title + "</br>" + "<b>"+ "Lead Artist: "+ "</b>" + leadartist
+        + "</br>" + "<b>"+ "Address: "+ "</b>" + Address)
              layer.bindPopup(popup)
-          }        
-      }).addTo(map);   
+          }
+      });
 
-        
-        
-        
-       
-        
-        
-        
-        
+
             var k12 = L.geoJson(k12schools, {
           pointToLayer: function(feature,coordinates) {
-              console.log(feature.properties.coordinates)
               return L.circle(coordinates, {
                  color: 'green',
                  weight: 2//step4
-              });   
+              });
           },
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
@@ -212,25 +172,25 @@
         stroke: 11
     });
 });
-    
+
 
           var school = feature.properties.SCHOOL
+          var Address = feature.properties.Address
 
-          var popup = ( "<b>"+ "Name: "+ "</b>" + school)
+          var popup = ( "<b>"+ "Name: "+ "</b>" + school +  "</br>"+ "<b>"+ "Address: "+ "</b>" + Address)
              layer.bindPopup(popup)
-          }        
-      }).addTo(map);   
+          }
+      });
 
-        
-        
-                  
+
+
+
             var ethnicity = L.geoJson(majority_ethnicity, {
           pointToLayer: function(feature,coordinates) {
-              console.log(feature.properties.coordinates)
               return L.polygon(coordinates, {
                  color: 'green',
                  weight: 6//step4
-              });   
+              });
           },
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
@@ -245,23 +205,22 @@
         stroke: 11
     });
 });
-    
+
 
           var ethn = feature.properties.MajorityEt
 
           var popup = ( "<b>"+ "Ethnic Majority: "+ "</b>" + ethn)
              layer.bindPopup(popup)
-          }        
-      }).addTo(map);   
+          }
+      });
 
-        
+
             var mostpooresttop3 = L.geoJson(mostpooresttop3, {
           pointToLayer: function(feature,coordinates) {
-              console.log(feature.properties.coordinates)
               return L.polygon(coordinates, {
                  color: 'green',
                  weight: 1//step4
-              });   
+              });
           },
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
@@ -276,26 +235,238 @@
         stroke: 11
     });
 });
-    
-
           var population = feature.properties.Population
 
           var popup = ( "<b>"+ "Population: "+ "</b>" + population)
              layer.bindPopup(popup)
-          }        
-      }).addTo(map);     
-    
-        
-        
-        
-    
+          }
+      });
+
+  var Architectural  = L.geoJson(all_artworks, {
+  filter: function(feature, layer) {
+    return (feature.properties.Type === "Architectural");
+  },
+  pointToLayer: function(feature,coordinates) {
+      return L.circle(coordinates, {
+         color: 'yellow',
+         weight: 1//step4
+      });
+  },
+  onEachFeature : function(feature,layer) {
+  var Title_of_A = feature.properties.Title_of_A
+  var Lead_Artis = feature.properties.Lead_Artis
+  var Type = feature.properties.Type
+  var Condition = feature.properties.Condition
+  var Address = feature.properties.Address
+  var popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>"+ "Lead Artist: "+ "</b>" + Lead_Artis + "<br>"+ "<b>"+ "Type: "+ "</b>" + Type + "<br>" + "<b>"+ "Condition: "+ "</b>" + Condition +
+   "<br>"  + "<b>"+ "Address: "+ "</b>" + Address)
+     layer.bindPopup(popup)
+  }
+
+  });
+
+
+
+var Graffiti = L.geoJson(all_artworks, {
+filter: function(feature, layer) {
+return (feature.properties.Type === "Graffiti");
+},
+pointToLayer: function(feature,coordinates) {
+    return L.circle(coordinates, {
+       color: 'yellow',
+       weight: 1//step4
+    });
+},
+onEachFeature : function(feature,layer) {
+var Title_of_A = feature.properties.Title_of_A
+var Lead_Artis = feature.properties.Lead_Artis
+var Type = feature.properties.Type
+var Condition = feature.properties.Condition
+var Address = feature.properties.Address
+var popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>"+ "Lead Artist: "+ "</b>" + Lead_Artis + "<br>"+ "<b>"+ "Type: "+ "</b>" + Type + "<br>" + "<b>"+ "Condition: "+ "</b>" + Condition +
+ "<br>"  + "<b>"+ "Address: "+ "</b>" + Address)
+   layer.bindPopup(popup)
+}
+
+});
+
+
+
+var handletteredSign = L.geoJson(all_artworks, {
+filter: function(feature, layer) {
+return (feature.properties.Type === "Hand Lettered Sign");
+},
+pointToLayer: function(feature,coordinates) {
+    return L.circle(coordinates, {
+       color: 'yellow',
+       weight: 1//step4
+    });
+},
+onEachFeature : function(feature,layer) {
+var Title_of_A = feature.properties.Title_of_A
+var Lead_Artis = feature.properties.Lead_Artis
+var Type = feature.properties.Type
+var Condition = feature.properties.Condition
+var Address = feature.properties.Address
+var popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>"+ "Lead Artist: "+ "</b>" + Lead_Artis + "<br>"+ "<b>"+ "Type: "+ "</b>" + Type + "<br>" + "<b>"+ "Condition: "+ "</b>" + Condition +
+ "<br>"  + "<b>"+ "Address: "+ "</b>" + Address)
+   layer.bindPopup(popup)
+}
+
+});
+
+
+
+var Mural = L.geoJson(all_artworks, {
+filter: function(feature, layer) {
+return (feature.properties.Type === "Mural");
+},
+pointToLayer: function(feature,coordinates) {
+    return L.circle(coordinates, {
+       color: 'yellow',
+       weight: 1//step4
+    });
+},
+onEachFeature : function(feature,layer) {
+var Title_of_A = feature.properties.Title_of_A
+var Lead_Artis = feature.properties.Lead_Artis
+var Type = feature.properties.Type
+var Condition = feature.properties.Condition
+var Address = feature.properties.Address
+var popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>"+ "Lead Artist: "+ "</b>" + Lead_Artis + "<br>"+ "<b>"+ "Type: "+ "</b>" + Type + "<br>" + "<b>"+ "Condition: "+ "</b>" + Condition +
+ "<br>"  + "<b>"+ "Address: "+ "</b>" + Address)
+   layer.bindPopup(popup)
+}
+
+});
+
+
+var Other = L.geoJson(all_artworks, {
+filter: function(feature, layer) {
+return (feature.properties.Type === "Other");
+},
+pointToLayer: function(feature,coordinates) {
+    return L.circle(coordinates, {
+       color: 'yellow',
+       weight: 1//step4
+    });
+},
+onEachFeature : function(feature,layer) {
+var Title_of_A = feature.properties.Title_of_A
+var Lead_Artis = feature.properties.Lead_Artis
+var Type = feature.properties.Type
+var Condition = feature.properties.Condition
+var Address = feature.properties.Address
+var popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>"+ "Lead Artist: "+ "</b>" + Lead_Artis + "<br>"+ "<b>"+ "Type: "+ "</b>" + Type + "<br>" + "<b>"+ "Condition: "+ "</b>" + Condition +
+ "<br>"  + "<b>"+ "Address: "+ "</b>" + Address)
+   layer.bindPopup(popup)
+}
+
+});
+
+
+var roadsideMemorial = L.geoJson(all_artworks, {
+filter: function(feature, layer) {
+return (feature.properties.Type === "Roadside Memorial");
+},
+pointToLayer: function(feature,coordinates) {
+    return L.circle(coordinates, {
+       color: 'yellow',
+       weight: 1//step4
+    });
+},
+onEachFeature : function(feature,layer) {
+var Title_of_A = feature.properties.Title_of_A
+var Lead_Artis = feature.properties.Lead_Artis
+var Type = feature.properties.Type
+var Condition = feature.properties.Condition
+var popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>"
++ "Lead Artist: "+ "</b>" + Lead_Artis + "<br>"+ "<b>"+ "Type: "+ "</b>" + Type
++ "<br>" + "<b>"+ "Condition: "+ "</b>" + Condition)
+   layer.bindPopup(popup)
+}
+
+});
+
+
+
+var Sculpture = L.geoJson(all_artworks, {
+filter: function(feature, layer) {
+return (feature.properties.Type === "Sculpture");
+},
+pointToLayer: function(feature,coordinates) {
+    return L.circle(coordinates, {
+       color: 'yellow',
+       weight: 1//step4
+    });
+},
+onEachFeature : function(feature,layer) {
+var Title_of_A = feature.properties.Title_of_A
+var Lead_Artis = feature.properties.Lead_Artis
+var Type = feature.properties.Type
+var Condition = feature.properties.Condition
+var Address = feature.properties.Address
+var popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>"+ "Lead Artist: "+ "</b>" + Lead_Artis + "<br>"+ "<b>"+ "Type: "+ "</b>" + Type + "<br>" + "<b>"+ "Condition: "+ "</b>" + Condition +
+ "<br>"  + "<b>"+ "Address: "+ "</b>" + Address)
+   layer.bindPopup(popup)
+}
+
+});
+
+
+
+var stainedGlass = L.geoJson(all_artworks, {
+filter: function(feature, layer) {
+return (feature.properties.Type === "Stained Glass");
+},
+pointToLayer: function(feature,coordinates) {
+    return L.circle(coordinates, {
+       color: 'yellow',
+       weight: 1//step4
+    });
+},
+onEachFeature : function(feature,layer) {
+var Title_of_A = feature.properties.Title_of_A
+var Lead_Artis = feature.properties.Lead_Artis
+var Type = feature.properties.Type
+var Condition = feature.properties.Condition
+var Address = feature.properties.Address
+var popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>"+ "Lead Artist: "+ "</b>" + Lead_Artis + "<br>"+ "<b>"+ "Type: "+ "</b>" + Type + "<br>" + "<b>"+ "Condition: "+ "</b>" + Condition +
+ "<br>"  + "<b>"+ "Address: "+ "</b>" + Address)
+   layer.bindPopup(popup)
+}
+
+});
+
+var tacticalUrbanism = L.geoJson(all_artworks, {
+filter: function(feature, layer) {
+return (feature.properties.Type === "Tactical Urbanism");
+},
+pointToLayer: function(feature,coordinates) {
+    return L.circle(coordinates, {
+       color: 'yellow',
+       weight: 1//step4
+    });
+},
+onEachFeature : function(feature,layer) {
+var Title_of_A = feature.properties.Title_of_A
+var Lead_Artis = feature.properties.Lead_Artis
+var Type = feature.properties.Type
+var Condition = feature.properties.Condition
+var Address = feature.properties.Address
+var popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>"+ "Lead Artist: "+ "</b>" + Lead_Artis + "<br>"+ "<b>"+ "Type: "+ "</b>" + Type + "<br>" + "<b>"+ "Condition: "+ "</b>" + Condition +
+ "<br>"  + "<b>"+ "Address: "+ "</b>" + Address)
+   layer.bindPopup(popup)
+}
+
+});
+
     var all_artworks = L.geoJson(all_artworks, {
           pointToLayer: function(feature,coordinates) {
-              console.log(feature.properties.coordinates)
               return L.circle(coordinates, {
                  color: 'yellow',
                  weight: 1//step4
-              });   
+              });
           },
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
@@ -310,71 +481,63 @@
         stroke: 11
     });
 });
-    
+
 
           var Title_of_A = feature.properties.Title_of_A
           var Lead_Artis = feature.properties.Lead_Artis
           var Type = feature.properties.Type
           var Condition = feature.properties.Condition
-          var popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>"+ "Lead Artist: "+ "</b>" + Lead_Artis + "<br>"+ "<b>"+ "Type: "+ "</b>" + Type + "<br>" + "<b>"+ "Condition: "+ "</b>" + Condition + "<br>" + "<b>"+ "URL: "+ "</b>" + "https://www.visitindy.com/")
-             layer.bindPopup(popup)
-          }        
-      }).addTo(map);     
-        
-        
-        
-        
-        
-        
-        
-        
-        
-      var ZIPcodes_withArttype = L.geoJson(ZIPcodes_withArttype, {
-          pointToLayer: function(feature,coordinates) {
-              console.log(feature.properties.Lead_Artis)
-              return L.polygon(coordinates, {
-                 color: 'green',
-                 weight: 1.5
-              });   
-          },
-    onEachFeature : function(feature,layer) {
-    layer.on('mouseover', function() {
-    layer.setStyle({
-        fillColor: 'red',
-        stroke: 11
-    });
-});
-    layer.on('mouseout', function() {
-    layer.setStyle({
-        fillColor: 'green',
-        stroke: 11
-    });
-});
-
-
-          var lead_artist = feature.properties.Lead_Artis
-          var title = feature.properties.Title_of_A
-          var popup = ("<b>"+ "Lead Artist: "+ "</b>" + "<br>"+ lead_artist + "<b>"+ "Title of Artwork: " + "</b>" + title)
+          var Address = feature.properties.Address
+          var popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>"+ "Lead Artist: "+ "</b>" + Lead_Artis + "<br>"+ "<b>"+ "Type: "+ "</b>" + Type + "<br>" + "<b>"+ "Condition: "+ "</b>" + Condition +
+           "<br>"  + "<b>"+ "Address: "+ "</b>" + Address)
              layer.bindPopup(popup)
           }
-      
-      }).addTo(map);    
-        
-        
-   
-     /*   added federal promise zone */
-        
-        
+      }).addTo(map);
 
-   /* */     
-      
+//       var ZIPcodes_withArttype = L.geoJson(ZIPcodes_withArttype, {
+//           pointToLayer: function(feature,coordinates) {
+//               return L.polygon(coordinates, {
+//                  color: 'green',
+//                  weight: 1.5
+//               });
+//           },
+//     onEachFeature : function(feature,layer) {
+//     layer.on('mouseover', function() {
+//     layer.setStyle({
+//         fillColor: 'red',
+//         stroke: 11
+//     });
+// });
+//     layer.on('mouseout', function() {
+//     layer.setStyle({
+//         fillColor: 'green',
+//         stroke: 11
+//     });
+// });
+//
+//
+//           var lead_artist = feature.properties.Lead_Artis
+//           var title = feature.properties.Title_of_A
+//           var popup = ("<b>"+ "Lead Artist: "+ "</b>" +  lead_artist + "<br>"+ "<b>"+ "Title of Artwork: " + "</b>" + title)
+//              layer.bindPopup(popup)
+//           }
+//
+//       }).addTo(map);
+
+
+     /*   added federal promise zone */
+
+
+
+   /* */
+
       var FederalPromiseZone = L.geoJson(FederalPromiseZone, {
           pointToLayer: function(feature,coordinates) {
-              
+
               return L.polygon(coordinates, {
                  color: 'white',
                  weight: 1.5
-              });   
+              });
           },
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
@@ -391,31 +554,23 @@
 });
 
 
-          
+
           var popup = ("<b>"+ "Indianapolis Promise Zone")
              layer.bindPopup(popup)
           }
-      
-      }).addTo(map);         
-        
-        
-        
-        
-        
+
+      });
+
        /*   added opportunity zone */
-        
-        
-        
-        
-   /* */     
-      
+   /* */
+
       var opportunityzone = L.geoJson(opportunityzone, {
           pointToLayer: function(feature,coordinates) {
-              
+
               return L.polygon(coordinates, {
                  color: '#7400b8',
                  weight: 1.5
-              });   
+              });
           },
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
@@ -431,30 +586,20 @@
     });
 });
 
-
-          
           var popup = ("<b>"+ "Opportunity Zone")
              layer.bindPopup(popup)
           }
-      
-      }).addTo(map);           
-        
-        
-        
-        
-        
-        
-        
-        
+
+      });
+
           var DangerousTop3 = L.geoJson(dangeroustop3, {
           pointToLayer: function(feature,coordinates) {
-              console.log(feature.properties.CRIMES)
               return L.polygon(coordinates, {
                  color: '#ff7800',
                  weight: 3//step4
-              });   
+              });
           },
-              
+
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
     layer.setStyle({
@@ -469,56 +614,47 @@
     });
 });
 
-         
           var crime = feature.properties.CRIMES
           var popup = ("<b>"+ "Crime: "+ "</b>" + crime)
           layer.bindPopup(popup)
-          }   
-      }).addTo(map);
-        
-        
-        
-        
-        
-    
+          }
+      });
+
+
           var ZIP_Code_Boundaries =  L.geoJson(ZIPcodes_withArttype_one, {
           pointToLayer: function(feature,coordinates) {
-              console.log(feature.properties.type)
               return L.polyline(coordinates, {
-                 color: 'green',
-                 weight: 3//step4
-              });   
+                 color: 'blue',
+                 // weight: 3//step4
+              });
           },
-              
+
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
     layer.setStyle({
-        fillColor: 'red',
-        stroke: 5
+        fillColor: '#3388ff'
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
-        fillColor: 'green',
-        stroke: 11
+        fillcolor: '#3388ff'
+        // stroke: 3
     });
 });
-          var zipcode = feature.properties.GEOID10 
+
+
+          var zipcode = feature.properties.GEOID10
           var popup = ("<b>"+ "Zip Code: "+ "</b>" + zipcode)
              layer.bindPopup(popup)
-          }   
+          }
       }).addTo(map);
-        
-        
-        
-    
+
       var mostwealthytop3 = L.geoJson(mostwealthytop3, {
           pointToLayer: function(feature,coordinates) {
-              console.log(feature.properties.coordinates)
               return L.polyline(coordinates, {
                  color: 'yellow',
                  weight: 1//step4
-              });   
+              });
           },
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
@@ -534,25 +670,20 @@
     });
 });
 
-
           var test = feature.properties.coordinates
           var popup = ("<b>"+ "Coordinates: "+ "</b>" + "<br>"+ test)
              layer.bindPopup(popup)
-          }        
-      }).addTo(map);
-        
-        
-        
-        
+          }
+      });
+
       /* added collections */
-        
+
                 var collections2 = L.geoJson(collections2, {
           pointToLayer: function(feature,coordinates) {
-              console.log(feature.properties.address)
               return L.circle(coordinates, {
                  color: 'white',
                  weight: 2//step4
-              });   
+              });
           },
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
@@ -567,33 +698,24 @@
         stroke: 11
     });
 });
-    
+
 
           var Title_of_work = feature.properties.Title_of_work
-          
+          var Address = feature.properties.Address
 
-          var popup = ( "<b>"+ "Title of Work "+ "</b>" + Title_of_work)
+          var popup = ( "<b>"+ "Title of Work "+ "</b>" + Title_of_work
+            + "<br>"  + "<b>"+ "Address: "+ "</b>" + Address)
              layer.bindPopup(popup)
-          }        
-      }).addTo(map);    
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+          }
+      });
+
+
               var women = L.geoJson(women, {
           pointToLayer: function(feature,coordinates) {
-              console.log(feature.properties.coordinates)
               return L.circle(coordinates, {
                  color: '#ca0050',
                  weight: 1//step4
-              });   
+              });
           },
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
@@ -611,20 +733,21 @@
 
 
           var title = feature.properties.Title_of_A
-          var popup = ("<b>"+ "Title of Artwork: "+ "</b>" + "<br>"+ title)
+          var Address = feature.properties.Address
+          var popup = ("<b>"+ "Title of Artwork: "+ "</b>" + "<br>"+ title
+        + "<br>"  + "<b>"+ "Address: "+ "</b>" + Address)
              layer.bindPopup(popup)
-          }        
-      }).addTo(map);
-        
-        
-        
+          }
+      });
+
+
+
                    var black = L.geoJson(Black, {
           pointToLayer: function(feature,coordinates) {
-              console.log(feature.properties.coordinates)
               return L.circle(coordinates, {
                  color: '#0273c4',
                  weight: 1//step4
-              });   
+              });
           },
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
@@ -640,23 +763,21 @@
     });
 });
 
-
           var title = feature.properties.Title_of_A
-          var popup = ("<b>"+ "Title of Artwork: "+ "</b>" + "<br>"+ title)
+          var Address = feature.properties.Address
+          var popup = ("<b>"+ "Title of Artwork: "+ "</b>" + "<br>"+ title
+        + "<br>"  + "<b>"+ "Address: "+ "</b>" + Address)
              layer.bindPopup(popup)
-          }        
-      }).addTo(map);
-        
- 
-        
-                
+          }
+      });
+
+
                    var latino = L.geoJson(Latino, {
           pointToLayer: function(feature,coordinates) {
-              console.log(feature.properties.coordinates)
               return L.circle(coordinates, {
                  color: '#f77b11',
                  weight: 1//step4
-              });   
+              });
           },
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
@@ -674,23 +795,19 @@
 
 
           var title = feature.properties.Title_of_A
-          var popup = ("<b>"+ "Title of Artwork: "+ "</b>" + "<br>"+ title)
+          var Address = feature.properties.Address
+          var popup = ("<b>"+ "Title of Artwork: "+ "</b>" + "<br>"+ title
+              + "<br>"  + "<b>"+ "Address: "+ "</b>" + Address)
              layer.bindPopup(popup)
-          }        
-      }).addTo(map);
-        
-  
-        
-        
-        
-                
+          }
+      });
+
                    var asian = L.geoJson(Asian_artists, {
           pointToLayer: function(feature,coordinates) {
-              console.log(feature.properties.coordinates)
               return L.circle(coordinates, {
                  color: 'yellow',
                  weight: 1//step4
-              });   
+              });
           },
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
@@ -708,33 +825,24 @@
 
 
           var title = feature.properties.Title_of_A
-          var popup = ("<b>"+ "Title of Artwork: "+ "</b>" + "<br>"+ title)
+          var Address = feature.properties.Address
+          var popup = ("<b>"+ "Title of Artwork: "+ "</b>" + "<br>"+ title
+                       + "<br>"  + "<b>"+ "Address: "+ "</b>" + Address)
              layer.bindPopup(popup)
-          }        
-      }).addTo(map);
-        
-    
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-  
-            var sourceLayers = {        
-             "Zipcode": ZIP_Code_Boundaries, 
-             "Artwork 150 Meters from a Bus Stop": artworkbus, 
-             "Artwork 1500 Meters from a College": artworkcollege, 
+          }
+      });
+
+
+            var sourceLayers = {
+             "Zipcode": ZIP_Code_Boundaries,
+             "Artwork 150 Meters from a Bus Stop": artworkbus,
+             "Artwork 1500 Meters from a College": artworkcollege,
              "Schools": k12,
-             "Majority Ethnicity": ethnicity, 
+             "Majority Ethnicity": ethnicity,
              "Top Three Most Impoverished Zipcodes": mostpooresttop3,
              "Top Three Dangerous Zipcodes": DangerousTop3, //name that you're giving the layer first and then variable
              "Top Three Wealthy Top Three Zipcodes": mostwealthytop3,
-             "Zip Codes with Art Type": ZIPcodes_withArttype,
+             // "Zip Codes with Art Type": ZIPcodes_withArttype,
              "All Artworks": all_artworks,
              "Women Artists": women,
              "Black Artists": black,
@@ -742,39 +850,19 @@
              "Asian Artists": asian,
              "Indianapolis Promise Zone": FederalPromiseZone,
              "Opprtunity Zone": opportunityzone,
-             "Collections": collections2, 
-             
+             "Collections": collections2,
+             "Tactical Urbanism" : tacticalUrbanism,
+            "Architectural" : Architectural,
+            "Graffiti" : Graffiti,
+            "Hand Lettered Sign" : handletteredSign,
+            "Mural" : Mural,
+            "Other" : Other,
+            "Roadside Memorial" : roadsideMemorial,
+            "Sculpture" : Sculpture,
+            "Stained Glass" : stainedGlass,
          }
-                  
-    
-            //change these hex codes to light grey
-        var sourceLayers = {    
-            "<b style='color:#000000'>Zipcode</b>": ZIP_Code_Boundaries,  
-            "<b style='color:#000000'>Women Artists</b>": women, 
-            "<b style='color:#000000'>Black Artists</b>": black, 
-            "<b style='color:#000000'>Latino/a/e Artists</b>": latino, 
-            "<b style='color:#000000'>Asian Artists</b>": asian,
-            "<b style='color:#000000'>Artwork 150 Meters from a Bus Stop</b>": artworkbus, 
-            "<b style='color:#000000'>Artwork 1500 Meters from a College</b>": artworkcollege,  
-            "<b style='color:#000000'>Schools</b>": k12, 
-            "<b style='color:#000000'>Majority Ethnicity</b>": ethnicity, 
-            "<b style='color:#000000'>Top Three Most Impoverished Zipcodes</b>": mostpooresttop3, 
-            "<b style='color:#000000'>Top Three Dangerous Zipcodes</b>": DangerousTop3, 
-            "<b style='color:#000000'>Top Three Wealthy Zipcodes</b>": mostwealthytop3, 
-            "<b style='color:#000000'>Zipcodes and Art Type</b>": ZIPcodes_withArttype, 
-            "<b style='color:#000000'>All Artworks</b>": all_artworks,
-            "<b style='color:#000000'>Indianapolis Promise Zone</b>": FederalPromiseZone,
-             "<b style='color:#000000'>Opportunity Zone</b>": opportunityzone,
-            "<b style='color:#000000'>Collections</b>": collections2
-        
-        }
-         
-         L.control.layers(null, sourceLayers, {collapsed:true}).addTo(map);
-//        
-        
-          
-   </script>
-    
-</body>
 
+         L.control.layers(null, sourceLayers, {collapsed:true}).addTo(map);
+   </script>
+</body>
 </html>
