@@ -60,7 +60,7 @@
           The building of this public art catalogue is an ongoing process.
           If you see an inaccuracy or identify work that was not captured please share those details
           with us by visiting this link:
-          <a href= "https://forms.gle/cbzzkU25bRvhoc1y8">link</a>
+          <a href= "https://docs.google.com/forms/d/1P6JC3GGyvYTG_w5NEZn0vfhwka5OxkefJDC4_NkRoUk/edit">link</a>
          <br> </br>  Addresses are not disclosed for residential sites or roadside memorials to honor privacy </p>
 
     </footer>
@@ -90,8 +90,8 @@
 <script src=js/collections2.js></script>
 <script src=js/opportunityzone.js></script>
 <script src=js/GSparcels.js></script>
+<script src=js/buses.js></script>
     <script>
-
 
 
 
@@ -191,6 +191,35 @@
           }
       });
 
+      var buses = L.geoJson(buses, {
+           pointToLayer: function(feature,coordinates) {
+
+               return L.polygon(coordinates, {
+                  color: 'green',
+                  weight: 1.5
+               });
+           },
+     onEachFeature : function(feature,layer) {
+     layer.on('mouseover', function() {
+     layer.setStyle({
+         fillColor: 'yellow',
+         stroke: 11
+     });
+ });
+     layer.on('mouseout', function() {
+     layer.setStyle({
+         fillColor: 'white',
+         stroke: 11
+     });
+ });
+
+ var bus = feature.properties.ROUTE_NO
+ var popup = ( "<b>"+ "Route Number: "+ "</b>" + bus )
+    layer.bindPopup(popup)}
+
+       });
+
+
 
 
      var GSparcels = L.geoJson(GSparcels, {
@@ -216,7 +245,7 @@
 });
 
 var GSp = feature.properties.FULLOWNERN
-var popup = ( "<b>"+ "GS Parcel with 15 foot buffer: "+ "</b>" + GSp )
+var popup = ( "<b>"+ "Keep Indianapolis Beautiful Greenspaces: "+ "</b>" + GSp )
    layer.bindPopup(popup)}
 
       });
@@ -830,7 +859,6 @@ var popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>"+
     });
 });
 
-
           var title = feature.properties.Title_of_A
           var Address = feature.properties.Address
           var popup = ("<b>"+ "Title of Artwork: "+ "</b>" + "<br>"+ title
@@ -897,9 +925,9 @@ var popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>"+
             "Roadside Memorial" : roadsideMemorial,
             "Sculpture" : Sculpture,
             "Stained Glass" : stainedGlass,
-            "GS Parcels 15ft Buffer" : GSparcels,
+            "Keep Indianapolis Beautiful Greenspaces" : GSparcels,
+            "IndyGo Bus Routes" : buses,
          }
-
          L.control.layers(null, sourceLayers, {collapsed:true}).addTo(map);
    </script>
 </body>
