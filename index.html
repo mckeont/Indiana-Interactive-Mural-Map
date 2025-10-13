@@ -940,6 +940,46 @@ var popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>"+
       });
 
 
+        // --- Art Desert layers ---
+const type1_2010Layer = L.geoJSON(null, {
+  style: { color: '#7f3b08', fillColor: '#b35806', fillOpacity: 0.25, weight: 1.5 },
+  onEachFeature: (f, layer) => {
+    layer.on('mouseover', () => layer.setStyle({ weight: 2.5, fillOpacity: 0.35 }));
+    layer.on('mouseout',  () => layer.setStyle({ weight: 1.5, fillOpacity: 0.25 }));
+    const p = f.properties || {};
+    layer.bindPopup(`<b>Type 1 Art Desert (2010)</b>${p.GEOID10 ? `<br>Tract: ${p.GEOID10}`:''}`);
+  }
+});
+
+const type1_2020Layer = L.geoJSON(null, {
+  style: { color: '#9644a0', fillColor: '#b47cc5', fillOpacity: 0.25, weight: 1.5 },
+  onEachFeature: (f, layer) => {
+    layer.on('mouseover', () => layer.setStyle({ weight: 2.5, fillOpacity: 0.35 }));
+    layer.on('mouseout',  () => layer.setStyle({ weight: 1.5, fillOpacity: 0.25 }));
+    const p = f.properties || {};
+    layer.bindPopup(`<b>Type 1 Art Desert (2020)</b>${p.GEOID20 ? `<br>Tract: ${p.GEOID20}`:''}`);
+  }
+});
+
+const type2Layer = L.geoJSON(null, {
+  style: { color: '#1f78b4', fillColor: '#6aa5d7', fillOpacity: 0.25, weight: 1.5, dashArray: '6,3' },
+  onEachFeature: (f, layer) => {
+    layer.on('mouseover', () => layer.setStyle({ weight: 2.5, fillOpacity: 0.35 }));
+    layer.on('mouseout',  () => layer.setStyle({ weight: 1.5, fillOpacity: 0.25 }));
+    layer.bindPopup(`<b>Type 2 Art Desert</b>`);
+  }
+});
+
+const type3Layer = L.geoJSON(null, {
+  style: { color: '#33a02c', fillColor: '#7fd17b', fillOpacity: 0.25, weight: 1.5, dashArray: '2,6' },
+  onEachFeature: (f, layer) => {
+    layer.on('mouseover', () => layer.setStyle({ weight: 2.5, fillOpacity: 0.35 }));
+    layer.on('mouseout',  () => layer.setStyle({ weight: 1.5, fillOpacity: 0.25 }));
+    layer.bindPopup(`<b>Type 3 Art Desert</b>`);
+  }
+});
+
+
             var sourceLayers = {
              "Zipcode": ZIP_Code_Boundaries,
              "Artwork 150 Meters from a Bus Stop": artworkbus,
@@ -951,6 +991,10 @@ var popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>"+
              "Top Three Wealthy Zipcodes": mostwealthytop3,
               "Indianapolis Parks": parksLayer,
               "IN DNR Properties": dnrLayer,
+             "Census tract with no artwork(2010)": type1_2010Layer,
+            "Census tract with no artwork (2020)": type1_2020Layer,
+            "Zone with no artwork within 1 mile": type2Layer,
+            "Zone with low income + low public art access": type3Layer,
              "All Artworks": all_artworks,
              "Women Artists": women,
              "Black Artists": black,
@@ -974,7 +1018,10 @@ var popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>"+
       
 var control = L.control.layers(null, sourceLayers, { collapsed: true }).addTo(map);
 
-// Load GeoJSON data into the placeholder layers
+fetch('js/Type1_2010.json').then(r => r.json()).then(gj => type1_2010Layer.addData(gj));
+fetch('js/Type1_2020.json').then(r => r.json()).then(gj => type1_2020Layer.addData(gj));
+fetch('js/Type2.json').then(r => r.json()).then(gj => type2Layer.addData(gj));
+fetch('js/Type3.json').then(r => r.json()).then(gj => type3Layer.addData(gj));
 fetch('js/Indianapolis_Parks.geojson')
   .then(r => r.json())
   .then(gj => parksLayer.addData(gj));
