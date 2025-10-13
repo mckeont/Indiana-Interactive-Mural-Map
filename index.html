@@ -92,9 +92,52 @@
 <script src=js/opportunityzone.js></script>
 <script src=js/GSparcels.js></script>
 <script src=js/buses.js></script>
+<script src=js/Indianapolis_Parks.geojson></script>
+<script src=js/IN_DNR_Properties.geojson></script>
     <script>
 
+const parksLayer = L.geoJSON(null, {
+  style: { color: '#2b8a3e', weight: 1.5, fillOpacity: 0.3 },
+  onEachFeature: function (feature, layer) {
+    layer.on('mouseover', () => layer.setStyle({ fillColor: 'yellow', weight: 2 }));
+    layer.on('mouseout',  () => layer.setStyle({ fillColor: '#2b8a3e', weight: 1.5 }));
+    // Common fields in your file: NAME, OWNER, ACRES, ADDRESS
+    const p = feature.properties || {};
+    const name = p.NAME || p.name || 'Park';
+    const owner = p.OWNER || p.owner || '';
+    const acres = p.ACRES ?? p.acres ?? '';
+    const addr  = p.ADDRESS || p.address || '';
+    const popup = `
+      <b>Park:</b> ${name}<br>
+      ${owner ? `<b>Owner:</b> ${owner}<br>` : '' }
+      ${acres !== '' ? `<b>Acres:</b> ${acres}<br>` : '' }
+      ${addr ? `<b>Address:</b> ${addr}` : '' }
+    `;
+    layer.bindPopup(popup);
+  }
+});
 
+/* --- DNR Properties (State) --- */
+const dnrLayer = L.geoJSON(null, {
+  style: { color: '#00509d', weight: 1.5, fillOpacity: 0.25 },
+  onEachFeature: function (feature, layer) {
+    layer.on('mouseover', () => layer.setStyle({ fillColor: 'white', weight: 2 }));
+    layer.on('mouseout',  () => layer.setStyle({ fillColor: '#00509d', weight: 1.5 }));
+    // Common fields in your file: unitname, owner, acres, access_
+    const p = feature.properties || {};
+    const name  = p.unitname || p.UNITNAME || 'DNR Property';
+    const owner = p.owner || p.OWNER || '';
+    const acres = p.acres ?? p.ACRES ?? '';
+    const access = p.access_ || '';
+    const popup = `
+      <b>Property:</b> ${name}<br>
+      ${owner ? `<b>Owner:</b> ${owner}<br>` : '' }
+      ${acres !== '' ? `<b>Acres:</b> ${acres}<br>` : '' }
+      ${access ? `<b>Access:</b> ${access}` : '' }
+    `;
+    layer.bindPopup(popup);
+  }
+});
 
 
         var artworkcollege = L.geoJson(art1500mcollege, {
@@ -908,7 +951,8 @@ var popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>"+
              "Top Three Most Impoverished Zipcodes": mostpooresttop3,
              "Top Three Dangerous Zipcodes": DangerousTop3, 
              "Top Three Wealthy Zipcodes": mostwealthytop3,
-             // "Zip Codes with Art Type": ZIPcodes_withArttype,
+              "Indianapolis Parks": parksLayer,
+              "IN DNR Properties": dnrLayer,
              "All Artworks": all_artworks,
              "Women Artists": women,
              "Black Artists": black,
@@ -929,7 +973,17 @@ var popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>"+
             "Keep Indianapolis Beautiful Greenspaces" : GSparcels,
             "IndyGo Bus Routes" : buses,
          }
-         L.control.layers(null, sourceLayers, {collapsed:true}).addTo(map);
+      
+var control = L.control.layers(null, sourceLayers, { collapsed: true }).addTo(map);
+
+// Load GeoJSON data into the placeholder layers
+fetch('data/Indianapolis_Parks.geojson')
+  .then(r => r.json())
+  .then(gj => parksLayer.addData(gj));
+
+fetch('data/IN_DNR_Properties.geojson')
+  .then(r => r.json())
+  .then(gj => dnrLayer.addData(gj));
    </script>
 </body>
 </html>
