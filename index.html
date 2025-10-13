@@ -92,8 +92,6 @@
 <script src=js/opportunityzone.js></script>
 <script src=js/GSparcels.js></script>
 <script src=js/buses.js></script>
-<script src=js/Indianapolis_Parks.geojson></script>
-<script src=js/IN_DNR_Properties.geojson></script>
     <script>
 
 const parksLayer = L.geoJSON(null, {
@@ -977,13 +975,14 @@ var popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>"+
 var control = L.control.layers(null, sourceLayers, { collapsed: true }).addTo(map);
 
 // Load GeoJSON data into the placeholder layers
-fetch('data/Indianapolis_Parks.geojson')
+fetch('js/Indianapolis_Parks.geojson')
   .then(r => r.json())
   .then(gj => parksLayer.addData(gj));
 
-fetch('data/IN_DNR_Properties.geojson')
+fetch('js/IN_DNR_Properties.geojson')
   .then(r => r.json())
   .then(gj => dnrLayer.addData(gj));
+
    </script>
 </body>
 </html>
