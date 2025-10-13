@@ -95,7 +95,7 @@
     <script>
 
 const parksLayer = L.geoJSON(null, {
-  style: { color: '#2b8a3e', weight: 1.5, fillOpacity: 0.3 },
+  style: { color: '#2b8a3e', fillColor: '#2b8a3e',  weight: 1.5, fillOpacity: 0.3 },
   onEachFeature: function (feature, layer) {
     layer.on('mouseover', () => layer.setStyle({ fillColor: 'yellow', weight: 2 }));
     layer.on('mouseout',  () => layer.setStyle({ fillColor: '#2b8a3e', weight: 1.5 }));
@@ -117,7 +117,7 @@ const parksLayer = L.geoJSON(null, {
 
 /* --- DNR Properties (State) --- */
 const dnrLayer = L.geoJSON(null, {
-  style: { color: '#00509d', weight: 1.5, fillOpacity: 0.25 },
+  style: { color: '#00509d', fillColor: '#00509d', weight: 1.5, fillOpacity: 0.25 },
   onEachFeature: function (feature, layer) {
     layer.on('mouseover', () => layer.setStyle({ fillColor: 'white', weight: 2 }));
     layer.on('mouseout',  () => layer.setStyle({ fillColor: '#00509d', weight: 1.5 }));
