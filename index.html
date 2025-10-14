@@ -124,7 +124,7 @@ const multiArtistLayer = L.geoJSON(window.all_artworks, {
     <script>
 
         const culturalTrailLayer = L.geoJSON(null, {
-  style: { color: '#ff7f00', weight: 3, opacity: 0.95 }, // orange line
+  style: { pane: 'trailPane', style: { color:'#ff7f00', weight:3 }, // orange line
   onEachFeature: (f, layer) => {
     layer.bindPopup('<b>Indianapolis Cultural Trail</b>');
     layer.on('mouseover', () => layer.setStyle({ weight: 5 }));
@@ -195,13 +195,13 @@ const dnrLayer = L.geoJSON(null, {
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'red',
-        stroke: 11
+        weight: 11
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: 'purple',
-        stroke: 11
+        weight: 11
     });
 });
 
@@ -227,13 +227,13 @@ const dnrLayer = L.geoJSON(null, {
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'red',
-        stroke: 11
+        weight: 11
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: '#2a9d8f',
-        stroke: 11
+        weight: 11
     });
 });
 
@@ -259,13 +259,13 @@ const dnrLayer = L.geoJSON(null, {
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'red',
-        stroke: 11
+        weight: 11
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: 'green',
-        stroke: 11
+        weight: 11
     });
 });
 
@@ -290,13 +290,13 @@ const dnrLayer = L.geoJSON(null, {
      layer.on('mouseover', function() {
      layer.setStyle({
          fillColor: 'yellow',
-         stroke: 11
+         weight: 11
      });
  });
      layer.on('mouseout', function() {
      layer.setStyle({
          fillColor: 'white',
-         stroke: 11
+         weight: 11
      });
  });
 
@@ -321,13 +321,13 @@ const dnrLayer = L.geoJSON(null, {
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'yellow',
-        stroke: 11
+        weight: 11
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: 'white',
-        stroke: 11
+        weight: 11
     });
 });
 
@@ -351,13 +351,13 @@ const popup = ( "<b>"+ "Keep Indianapolis Beautiful Greenspaces: "+ "</b>" + GSp
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'red',
-        stroke: 11
+        weight: 11
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: 'green',
-        stroke: 11
+        weight: 11
     });
 });
 
@@ -381,13 +381,13 @@ const popup = ( "<b>"+ "Keep Indianapolis Beautiful Greenspaces: "+ "</b>" + GSp
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'red',
-        stroke: 11
+        weight: 11
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: 'green',
-        stroke: 11
+        weight: 11
     });
 });
           const population = feature.properties.Population
@@ -618,13 +618,13 @@ const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'green',
-        stroke: 11
+        weight: 11
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: 'yellow',
-        stroke: 11
+        weight: 11
     });
 });
           const Title_of_A = feature.properties.Title_of_A
@@ -645,8 +645,8 @@ const federalPromiseZoneLayer = L.geoJson(
     pointToLayer: (feature, coordinates) =>
       L.polygon(coordinates, { color: 'white', weight: 1.5 }),
     onEachFeature: (feature, layer) => {
-      layer.on('mouseover', () => layer.setStyle({ fillColor: 'yellow', stroke: 11 }));
-      layer.on('mouseout',  () => layer.setStyle({ fillColor: 'white',  stroke: 11 }));
+      layer.on('mouseover', () => layer.setStyle({ fillColor: 'yellow', weight: 11 }));
+      layer.on('mouseout',  () => layer.setStyle({ fillColor: 'white',  weight: 11 }));
       layer.bindPopup("<b>Indianapolis Promise Zone");
     }
   }
@@ -656,8 +656,8 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
   pointToLayer: (feature, coordinates) =>
     L.polygon(coordinates, { color: '#7400b8', weight: 1.5 }),
   onEachFeature: (feature, layer) => {
-    layer.on('mouseover', () => layer.setStyle({ fillColor: 'white',  stroke: 11 }));
-    layer.on('mouseout',  () => layer.setStyle({ fillColor: '#7400b8', stroke: 11 }));
+    layer.on('mouseover', () => layer.setStyle({ fillColor: 'white',  weight: 11 }));
+    layer.on('mouseout',  () => layer.setStyle({ fillColor: '#7400b8', weight: 11 }));
     layer.bindPopup("<b>Opportunity Zone");
   }
 });
@@ -674,13 +674,13 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: '#yellow',
-        stroke: 11
+        weight: 11
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: '#ff7800',
-        stroke: 11
+        weight: 11
     });
 });
 
@@ -706,7 +706,7 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
     layer.on('mouseout', function() {
     layer.setStyle({
         fillcolor: '#3388ff'
-        // stroke: 3
+        // weight: 3
     });
 });
           const zipcode = feature.properties.GEOID10
@@ -726,13 +726,13 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'green',
-        stroke: 11
+        weight: 11
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: 'yellow',
-        stroke: 11
+        weight: 11
     });
 });
 
@@ -754,13 +754,13 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'red',
-        stroke: 11
+        weight: 11
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: 'white',
-        stroke: 11
+        weight: 11
     });
 });
 
@@ -785,13 +785,13 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'green',
-        stroke: 11
+        weight: 11
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: '#ca0050',
-        stroke: 11
+        weight: 11
     });
 });
 
@@ -814,13 +814,13 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'green',
-        stroke: 11
+        weight: 11
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: '#0273c4',
-        stroke: 11
+        weight: 11
     });
 });
 
@@ -843,13 +843,13 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'green',
-        stroke: 11
+        weight: 11
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: '#f77b11',
-        stroke: 11
+        weight: 11
     });
 });
 
@@ -872,13 +872,13 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'green',
-        stroke: 11
+        weight: 11
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: 'yellow',
-        stroke: 11
+        weight: 11
     });
 });
 
