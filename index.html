@@ -167,7 +167,7 @@ const dnrLayer = L.geoJSON(null, {
 });
 
 
-        const artworkcollege = L.geoJson(art1500mcollege, {
+        const artworkCollegeLayer = L.geoJson(art1500mcollege, {
           pointToLayer: function(feature,coordinates) {
               return L.circle(coordinates, {
                  color: 'purple',
@@ -199,7 +199,7 @@ const dnrLayer = L.geoJSON(null, {
           }
       });
 
-            const artworkbus = L.geoJson(artwork150meterbus, {
+          const artworkBusLayer = L.geoJson(artwork150meterbus, {
           pointToLayer: function(feature,coordinates) {
               return L.circle(coordinates, {
                  color: '#2a9d8f',
@@ -231,7 +231,7 @@ const dnrLayer = L.geoJSON(null, {
       });
 
 
-            const k12 = L.geoJson(k12schools, {
+            const k12Layer = L.geoJson(k12schools, {
           pointToLayer: function(feature,coordinates) {
               return L.circle(coordinates, {
                  color: 'green',
@@ -261,7 +261,7 @@ const dnrLayer = L.geoJSON(null, {
           }
       });
 
-      const buses = L.geoJson(buses, {
+      const busesLayer  = L.geoJson(buses, {
            pointToLayer: function(feature,coordinates) {
 
                return L.polygon(coordinates, {
@@ -292,7 +292,7 @@ const dnrLayer = L.geoJSON(null, {
 
 
 
-     const GSparcels = L.geoJson(GSparcels, {
+     const GSparcelsLayer = L.geoJson(GSparcels, {
           pointToLayer: function(feature,coordinates) {
 
               return L.polygon(coordinates, {
@@ -323,7 +323,7 @@ const popup = ( "<b>"+ "Keep Indianapolis Beautiful Greenspaces: "+ "</b>" + GSp
 
 
 
-            const ethnicity = L.geoJson(majority_ethnicity, {
+            const ethnicityLayer = L.geoJson(majority_ethnicity, {
           pointToLayer: function(feature,coordinates) {
               return L.polygon(coordinates, {
                  color: 'green',
@@ -353,7 +353,7 @@ const popup = ( "<b>"+ "Keep Indianapolis Beautiful Greenspaces: "+ "</b>" + GSp
       });
 
 
-            const mostpooresttop3 = L.geoJson(mostpooresttop3, {
+            const mostPoorestTop3Layer = L.geoJson(mostpooresttop3, {
           pointToLayer: function(feature,coordinates) {
               return L.polygon(coordinates, {
                  color: 'green',
@@ -380,7 +380,7 @@ const popup = ( "<b>"+ "Keep Indianapolis Beautiful Greenspaces: "+ "</b>" + GSp
           }
       });
 
-  const Architectural  = L.geoJson(all_artworks, {
+  const ArchitecturalLayer  = L.geoJson(all_artworks, {
   filter: function(feature, layer) {
     return (feature.properties.Type === "Architectural");
   },
@@ -403,9 +403,7 @@ const popup = ( "<b>"+ "Keep Indianapolis Beautiful Greenspaces: "+ "</b>" + GSp
 
   });
 
-
-
-const Graffiti = L.geoJson(all_artworks, {
+const GraffitiLayer    = L.geoJson(all_artworks, {
 filter: function(feature, layer) {
 return (feature.properties.Type === "Graffiti");
 },
@@ -428,7 +426,7 @@ const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>
 
 });
 
-const handletteredSign = L.geoJson(all_artworks, {
+const HandLetteredSignLayer = L.geoJson(all_artworks, {
 filter: function(feature, layer) {
 return (feature.properties.Type === "Hand Lettered Sign");
 },
@@ -453,7 +451,7 @@ const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>
 
 
 
-const mural = L.geoJson(all_artworks, {
+const MuralLayer = L.geoJson(all_artworks, {
 filter: function(feature, layer) {
 return (feature.properties.Type === "Mural");
 },
@@ -477,7 +475,7 @@ const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>
 });
 
 
-const Other = L.geoJson(all_artworks, {
+const OtherLayer  = L.geoJson(all_artworks, {
 filter: function(feature, layer) {
 return (feature.properties.Type === "Other");
 },
@@ -501,7 +499,7 @@ const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>
 });
 
 
-const roadsideMemorial = L.geoJson(all_artworks, {
+const RoadsideMemorialLayer = L.geoJson(all_artworks, {
 filter: function(feature, layer) {
 return (feature.properties.Type === "Roadside Memorial");
 },
@@ -523,7 +521,7 @@ const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>
 }
 
 });
-const Sculpture = L.geoJson(all_artworks, {
+const SculptureLayer = L.geoJson(all_artworks, {
 filter: function(feature, layer) {
 return (feature.properties.Type === "Sculpture");
 },
@@ -546,9 +544,7 @@ const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>
 
 });
 
-
-
-const stainedGlass = L.geoJson(all_artworks, {
+const StainedGlassLayer  = L.geoJson(all_artworks, {
 filter: function(feature, layer) {
 return (feature.properties.Type === "Stained Glass");
 },
@@ -571,7 +567,7 @@ const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>
 
 });
 
-const tacticalUrbanism = L.geoJson(all_artworks, {
+const TacticalUrbanismLayer = L.geoJson(all_artworks, {
 filter: function(feature, layer) {
 return (feature.properties.Type === "Tactical Urbanism");
 },
@@ -594,7 +590,7 @@ const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>
 
 });
 
-    const all_artworks = L.geoJson(all_artworks, {
+    const allArtworksLayer = L.geoJson(all_artworks, {
           pointToLayer: function(feature,coordinates) {
               return L.circle(coordinates, {
                  color: 'yellow',
@@ -614,8 +610,6 @@ const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>
         stroke: 11
     });
 });
-
-
           const Title_of_A = feature.properties.Title_of_A
           const Lead_Artis = feature.properties.Lead_Artis
           const Type = feature.properties.Type
@@ -627,40 +621,6 @@ const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>
           }
       }).addTo(map);
 
-//       var ZIPcodes_withArttype = L.geoJson(ZIPcodes_withArttype, {
-//           pointToLayer: function(feature,coordinates) {
-//               return L.polygon(coordinates, {
-//                  color: 'green',
-//                  weight: 1.5
-//               });
-//           },
-//     onEachFeature : function(feature,layer) {
-//     layer.on('mouseover', function() {
-//     layer.setStyle({
-//         fillColor: 'red',
-//         stroke: 11
-//     });
-// });
-//     layer.on('mouseout', function() {
-//     layer.setStyle({
-//         fillColor: 'green',
-//         stroke: 11
-//     });
-// });
-//
-//
-//           var lead_artist = feature.properties.Lead_Artis
-//           var title = feature.properties.Title_of_A
-//           var popup = ("<b>"+ "Lead Artist: "+ "</b>" +  lead_artist + "<br>"+ "<b>"+ "Title of Artwork: " + "</b>" + title)
-//              layer.bindPopup(popup)
-//           }
-//
-//       }).addTo(map);
-
-
-     /*   added federal promise zone */
-
-   /* */
 
       const FederalPromiseZone = L.geoJson(FederalPromiseZone, {
           pointToLayer: function(feature,coordinates) {
@@ -750,7 +710,7 @@ const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>
           layer.bindPopup(popup)
           }
       });
-          const ZIP_Code_Boundaries =  L.geoJson(ZIPcodes_withArttype_one, {
+          const zipCodeBoundariesLayer =  L.geoJson(ZIPcodes_withArttype_one, {
           pointToLayer: function(feature,coordinates) {
               return L.polyline(coordinates, {
                  color: 'blue',
@@ -776,7 +736,7 @@ const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>
           }
       }).addTo(map);
 
-      const mostwealthytop3 = L.geoJson(mostwealthytop3, {
+      const mostWealthyTop3Layer = L.geoJson(mostwealthytop3, {
           pointToLayer: function(feature,coordinates) {
               return L.polyline(coordinates, {
                  color: 'yellow',
@@ -804,7 +764,7 @@ const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>
       });
 
 
-                const collections2 = L.geoJson(collections2, {
+                const collections2Layer = L.geoJson(collections2, {
           pointToLayer: function(feature,coordinates) {
               return L.circle(coordinates, {
                  color: 'white',
@@ -835,7 +795,7 @@ const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>
           }
       });
 
-              const women = L.geoJson(women, {
+              const womenLayer = L.geoJson(women, {
           pointToLayer: function(feature,coordinates) {
               return L.circle(coordinates, {
                  color: '#ca0050',
@@ -864,13 +824,11 @@ const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>
           }
       });
 
-
-
-                   const black = L.geoJson(Black, {
+                   const blackLayer  = L.geoJson(Black, {
           pointToLayer: function(feature,coordinates) {
               return L.circle(coordinates, {
                  color: '#0273c4',
-                 weight: 1//step4
+                 weight: 1
               });
           },
     onEachFeature : function(feature,layer) {
@@ -895,8 +853,7 @@ const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>
           }
       });
 
-
-                   const latino = L.geoJson(Latino, {
+                   const latinoLayer = L.geoJson(Latino, {
           pointToLayer: function(feature,coordinates) {
               return L.circle(coordinates, {
                  color: '#f77b11',
@@ -925,7 +882,7 @@ const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>
           }
       });
 
-                   const asian = L.geoJson(Asian_artists, {
+                   const asianLayer   = L.geoJson(Asian_artists, {
           pointToLayer: function(feature,coordinates) {
               return L.circle(coordinates, {
                  color: 'yellow',
