@@ -123,8 +123,12 @@ const multiArtistLayer = L.geoJSON(window.all_artworks, {
 
     <script>
 
-        const culturalTrailLayer = L.geoJSON(null, {
-  style: { pane: 'trailPane', style: { color:'#ff7f00', weight:3 }, // orange line
+const trailPane = map.createPane('trailPane');
+trailPane.style.zIndex = 650;
+
+const culturalTrailLayer = L.geoJSON(null, {
+  pane: 'trailPane',
+  style: { color: '#ff7f00', weight: 3, opacity: 0.95, lineCap: 'round', lineJoin: 'round' },
   onEachFeature: (f, layer) => {
     layer.bindPopup('<b>Indianapolis Cultural Trail</b>');
     layer.on('mouseover', () => layer.setStyle({ weight: 5 }));
@@ -134,10 +138,13 @@ const multiArtistLayer = L.geoJSON(window.all_artworks, {
 
 const whiteRiverSP = L.geoJSON(null, {
   style: { color: '#2b8a3e', fillColor: '#8fd19e', weight: 1.5, fillOpacity: 0.25 }, // green polygon
-  onEachFeature: (f, layer) => {
-    const name = f.properties?.name || 'White River State Park';
-    layer.bindPopup(`<b>${name}</b>`);
-  }
+onEachFeature: (f, layer) => {
+  const name = f.properties?.name || 'White River State Park';
+  layer.bindPopup(`<b>${name}</b>`);
+  layer.on('mouseover', () => layer.setStyle({ fillOpacity: 0.4, weight: 2 }));
+  layer.on('mouseout',  () => layer.setStyle({ fillOpacity: 0.25, weight: 1.5 }));
+}
+
 });
 
 const parksLayer = L.geoJSON(null, {
