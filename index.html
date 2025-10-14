@@ -128,8 +128,7 @@ trailPane.style.zIndex = 650;
 
 const culturalTrailLayer = L.geoJSON(null, {
   pane: 'trailPane',
-  // show only lines
-  filter: f => f.geometry && ['LineString','MultiLineString'].includes(f.geometry.type),
+  filter: f => ['LineString','MultiLineString'].includes(f.geometry?.type),
   style: { color: '#ff7f00', weight: 3, opacity: 0.95, lineCap: 'round', lineJoin: 'round' },
   onEachFeature: (f, layer) => {
     layer.bindPopup('<b>Indianapolis Cultural Trail</b>');
