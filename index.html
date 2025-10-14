@@ -622,66 +622,28 @@ const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>
       }).addTo(map);
 
 
-      const FederalPromiseZone = L.geoJson(FederalPromiseZone, {
-          pointToLayer: function(feature,coordinates) {
+const federalPromiseZoneLayer = L.geoJson(
+  window.FederalPromiseZone || window.Federal_Promise_Zone, // depends on your data var name
+  {
+    pointToLayer: (feature, coordinates) =>
+      L.polygon(coordinates, { color: 'white', weight: 1.5 }),
+    onEachFeature: (feature, layer) => {
+      layer.on('mouseover', () => layer.setStyle({ fillColor: 'yellow', stroke: 11 }));
+      layer.on('mouseout',  () => layer.setStyle({ fillColor: 'white',  stroke: 11 }));
+      layer.bindPopup("<b>Indianapolis Promise Zone");
+    }
+  }
+);
 
-              return L.polygon(coordinates, {
-                 color: 'white',
-                 weight: 1.5
-              });
-          },
-    onEachFeature : function(feature,layer) {
-    layer.on('mouseover', function() {
-    layer.setStyle({
-        fillColor: 'yellow',
-        stroke: 11
-    });
+const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
+  pointToLayer: (feature, coordinates) =>
+    L.polygon(coordinates, { color: '#7400b8', weight: 1.5 }),
+  onEachFeature: (feature, layer) => {
+    layer.on('mouseover', () => layer.setStyle({ fillColor: 'white',  stroke: 11 }));
+    layer.on('mouseout',  () => layer.setStyle({ fillColor: '#7400b8', stroke: 11 }));
+    layer.bindPopup("<b>Opportunity Zone");
+  }
 });
-    layer.on('mouseout', function() {
-    layer.setStyle({
-        fillColor: 'white',
-        stroke: 11
-    });
-});
-
-
-
-          const popup = ("<b>"+ "Indianapolis Promise Zone")
-             layer.bindPopup(popup)
-          }
-
-      });
-
-       /*   added opportunity zone */
-   /* */
-
-      const opportunityzone = L.geoJson(opportunityzone, {
-          pointToLayer: function(feature,coordinates) {
-
-              return L.polygon(coordinates, {
-                 color: '#7400b8',
-                 weight: 1.5
-              });
-          },
-    onEachFeature : function(feature,layer) {
-    layer.on('mouseover', function() {
-    layer.setStyle({
-        fillColor: 'white',
-        stroke: 11
-    });
-});
-    layer.on('mouseout', function() {
-    layer.setStyle({
-        fillColor: '#7400b8',
-        stroke: 11
-    });
-});
-
-          const popup = ("<b>"+ "Opportunity Zone")
-             layer.bindPopup(popup)
-          }
-
-      });
 
           const DangerousTop3 = L.geoJson(dangeroustop3, {
           pointToLayer: function(feature,coordinates) {
@@ -962,8 +924,8 @@ const type3Layer = L.geoJSON(null, {
   "Indy Parks": parksLayer,
   "Indiana DNR Properties": dnrLayer,
 
-  "Opportunity Zone": opportunityzone,               // if these two are your custom prepared layers, keep as-is
-  "Indianapolis Promise Zone": FederalPromiseZone,    // (they already use distinct names)
+  "Opportunity Zone": opportunityZoneLayer,
+  "Indianapolis Promise Zone": federalPromiseZoneLayer,
 
   "Top Three Wealthy Zipcodes": mostWealthyTop3Layer,
   "Top Three Dangerous Zipcodes": DangerousTop3,
