@@ -128,6 +128,8 @@ trailPane.style.zIndex = 650;
 
 const culturalTrailLayer = L.geoJSON(null, {
   pane: 'trailPane',
+  // show only lines
+  filter: f => f.geometry && ['LineString','MultiLineString'].includes(f.geometry.type),
   style: { color: '#ff7f00', weight: 3, opacity: 0.95, lineCap: 'round', lineJoin: 'round' },
   onEachFeature: (f, layer) => {
     layer.bindPopup('<b>Indianapolis Cultural Trail</b>');
@@ -150,7 +152,8 @@ onEachFeature: (f, layer) => {
 const parkPane = map.createPane('parkPane');
 parkPane.style.zIndex = 400;
 const parksLayer = L.geoJSON(null, {
-  style: { pane: 'parkPane', color: '#2b8a3e', fillColor: '#2b8a3e',  weight: 1.5, fillOpacity: 0.3 },
+  pane: 'parkPane',
+  style: { color: '#2b8a3e', fillColor: '#2b8a3e',  weight: 1.5, fillOpacity: 0.3 },
   onEachFeature: function (feature, layer) {
     layer.on('mouseover', () => layer.setStyle({ fillColor: 'yellow', weight: 2 }));
     layer.on('mouseout',  () => layer.setStyle({ fillColor: '#2b8a3e', weight: 1.5 }));
@@ -204,13 +207,13 @@ const dnrLayer = L.geoJSON(null, {
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'red',
-        weight: 11
+        weight: 4
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: 'purple',
-        weight: 11
+        weight: 4
     });
 });
 
@@ -236,13 +239,13 @@ const dnrLayer = L.geoJSON(null, {
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'red',
-        weight: 11
+        weight: 4
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: '#2a9d8f',
-        weight: 11
+        weight: 4
     });
 });
 
@@ -268,13 +271,13 @@ const dnrLayer = L.geoJSON(null, {
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'red',
-        weight: 11
+        weight: 4
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: 'green',
-        weight: 11
+        weight: 4
     });
 });
 
@@ -299,13 +302,13 @@ const dnrLayer = L.geoJSON(null, {
      layer.on('mouseover', function() {
      layer.setStyle({
          fillColor: 'yellow',
-         weight: 11
+         weight: 4
      });
  });
      layer.on('mouseout', function() {
      layer.setStyle({
          fillColor: 'white',
-         weight: 11
+         weight: 4
      });
  });
 
@@ -330,13 +333,13 @@ const dnrLayer = L.geoJSON(null, {
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'yellow',
-        weight: 11
+        weight: 4
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: 'white',
-        weight: 11
+        weight: 4
     });
 });
 
@@ -360,13 +363,13 @@ const popup = ( "<b>"+ "Keep Indianapolis Beautiful Greenspaces: "+ "</b>" + GSp
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'red',
-        weight: 11
+        weight: 4
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: 'green',
-        weight: 11
+        weight: 4
     });
 });
 
@@ -390,13 +393,13 @@ const popup = ( "<b>"+ "Keep Indianapolis Beautiful Greenspaces: "+ "</b>" + GSp
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'red',
-        weight: 11
+        weight: 4
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: 'green',
-        weight: 11
+        weight: 4
     });
 });
           const population = feature.properties.Population
@@ -627,13 +630,13 @@ const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'green',
-        weight: 11
+        weight: 4
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: 'yellow',
-        weight: 11
+        weight: 4
     });
 });
           const Title_of_A = feature.properties.Title_of_A
@@ -654,8 +657,8 @@ const federalPromiseZoneLayer = L.geoJson(
     pointToLayer: (feature, coordinates) =>
       L.polygon(coordinates, { color: 'white', weight: 1.5 }),
     onEachFeature: (feature, layer) => {
-      layer.on('mouseover', () => layer.setStyle({ fillColor: 'yellow', weight: 11 }));
-      layer.on('mouseout',  () => layer.setStyle({ fillColor: 'white',  weight: 11 }));
+      layer.on('mouseover', () => layer.setStyle({ fillColor: 'yellow', weight: 4 }));
+      layer.on('mouseout',  () => layer.setStyle({ fillColor: 'white',  weight: 4 }));
       layer.bindPopup("<b>Indianapolis Promise Zone");
     }
   }
@@ -665,8 +668,8 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
   pointToLayer: (feature, coordinates) =>
     L.polygon(coordinates, { color: '#7400b8', weight: 1.5 }),
   onEachFeature: (feature, layer) => {
-    layer.on('mouseover', () => layer.setStyle({ fillColor: 'white',  weight: 11 }));
-    layer.on('mouseout',  () => layer.setStyle({ fillColor: '#7400b8', weight: 11 }));
+    layer.on('mouseover', () => layer.setStyle({ fillColor: 'white',  weight: 4 }));
+    layer.on('mouseout',  () => layer.setStyle({ fillColor: '#7400b8', weight: 4 }));
     layer.bindPopup("<b>Opportunity Zone");
   }
 });
@@ -683,13 +686,13 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: '#yellow',
-        weight: 11
+        weight: 4
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: '#ff7800',
-        weight: 11
+        weight: 4
     });
 });
 
@@ -728,13 +731,13 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'green',
-        weight: 11
+        weight: 4
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: 'yellow',
-        weight: 11
+        weight: 4
     });
 });
 
@@ -756,13 +759,13 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'red',
-        weight: 11
+        weight: 4
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: 'white',
-        weight: 11
+        weight: 4
     });
 });
 
@@ -787,13 +790,13 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'green',
-        weight: 11
+        weight: 4
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: '#ca0050',
-        weight: 11
+        weight: 4
     });
 });
 
@@ -816,13 +819,13 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'green',
-        weight: 11
+        weight: 4
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: '#0273c4',
-        weight: 11
+        weight: 4
     });
 });
 
@@ -845,13 +848,13 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'green',
-        weight: 11
+        weight: 4
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: '#f77b11',
-        weight: 11
+        weight: 4
     });
 });
 
@@ -874,13 +877,13 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
     layer.on('mouseover', function() {
     layer.setStyle({
         fillColor: 'green',
-        weight: 11
+        weight: 4
     });
 });
     layer.on('mouseout', function() {
     layer.setStyle({
         fillColor: 'yellow',
-        weight: 11
+        weight: 4
     });
 });
 
@@ -1004,6 +1007,10 @@ fetch('js/IN_DNR_Properties.geojson')
 fetch('js/white_river_state_park.geojson')
   .then(r => r.json())
   .then(gj => whiteRiverSP.addData(gj));
+
+fetch('js/indy_cultural_trail.geojson')
+  .then(r => r.json())
+  .then(gj => culturalTrailLayer.addData(gj));
 
    </script>
 </body>
