@@ -508,7 +508,6 @@ filter: function(feature, layer) {
 return (feature.properties.Type === "Other");
 },
 pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
-},
 onEachFeature : function(feature,layer) {
 const Title_of_A = feature.properties.Title_of_A
 const Lead_Artis = feature.properties.Lead_Artis
@@ -528,7 +527,6 @@ filter: function(feature, layer) {
 return (feature.properties.Type === "Roadside Memorial");
 },
 pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
-},
 onEachFeature : function(feature,layer) {
 const Title_of_A = feature.properties.Title_of_A
 const Lead_Artis = feature.properties.Lead_Artis
@@ -546,7 +544,6 @@ filter: function(feature, layer) {
 return (feature.properties.Type === "Sculpture");
 },
 pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
-},
 onEachFeature : function(feature,layer) {
 const Title_of_A = feature.properties.Title_of_A
 const Lead_Artis = feature.properties.Lead_Artis
@@ -565,7 +562,6 @@ filter: function(feature, layer) {
 return (feature.properties.Type === "Stained Glass");
 },
 pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
-},
 onEachFeature : function(feature,layer) {
 const Title_of_A = feature.properties.Title_of_A
 const Lead_Artis = feature.properties.Lead_Artis
@@ -584,7 +580,6 @@ filter: function(feature, layer) {
 return (feature.properties.Type === "Tactical Urbanism");
 },
 pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
-},
 onEachFeature : function(feature,layer) {
 const Title_of_A = feature.properties.Title_of_A
 const Lead_Artis = feature.properties.Lead_Artis
@@ -600,7 +595,6 @@ const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>
 
     const allArtworksLayer = L.geoJson(all_artworks, {
           pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
-          },
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
     layer.setStyle({
@@ -752,7 +746,6 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
 
               const womenLayer = L.geoJson(women, {
           pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
-          },
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
     layer.setStyle({
@@ -777,7 +770,6 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
 
                    const blackLayer  = L.geoJson(Black, {
           pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
-          },
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
     layer.setStyle({
@@ -802,7 +794,6 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
 
                    const latinoLayer = L.geoJson(Latino, {
           pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
-          },
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
     layer.setStyle({
@@ -827,7 +818,6 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
 
                    const asianLayer   = L.geoJson(Asian_artists, {
           pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
-          },
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
     layer.setStyle({
