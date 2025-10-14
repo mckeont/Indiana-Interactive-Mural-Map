@@ -146,9 +146,11 @@ onEachFeature: (f, layer) => {
 }
 
 });
-
+        
+const parkPane = map.createPane('parkPane');
+parkPane.style.zIndex = 400;
 const parksLayer = L.geoJSON(null, {
-  style: { color: '#2b8a3e', fillColor: '#2b8a3e',  weight: 1.5, fillOpacity: 0.3 },
+  style: { pane: 'parkPane', color: '#2b8a3e', fillColor: '#2b8a3e',  weight: 1.5, fillOpacity: 0.3 },
   onEachFeature: function (feature, layer) {
     layer.on('mouseover', () => layer.setStyle({ fillColor: 'yellow', weight: 2 }));
     layer.on('mouseout',  () => layer.setStyle({ fillColor: '#2b8a3e', weight: 1.5 }));
@@ -706,15 +708,8 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
 
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
-    layer.setStyle({
-        fillColor: '#3388ff'
-    });
 });
     layer.on('mouseout', function() {
-    layer.setStyle({
-        fillcolor: '#3388ff'
-        // weight: 3
-    });
 });
           const zipcode = feature.properties.GEOID10
           const popup = ("<b>"+ "Zip Code: "+ "</b>" + zipcode)
