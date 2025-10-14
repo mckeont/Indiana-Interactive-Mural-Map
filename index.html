@@ -520,101 +520,81 @@ const OtherLayer = L.geoJson(all_artworks, {
 
 
 const RoadsideMemorialLayer = L.geoJson(all_artworks, {
-filter: function(feature, layer) {
-return (feature.properties.Type === "Roadside Memorial");
-},
-pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
-onEachFeature : function(feature,layer) {
-const Title_of_A = feature.properties.Title_of_A
-const Lead_Artis = feature.properties.Lead_Artis
-const Type = feature.properties.Type
-const Condition = feature.properties.Condition
-const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>"
-+ "Lead Artist: "+ "</b>" + Lead_Artis + "<br>"+ "<b>"+ "Type: "+ "</b>" + Type
-+ "<br>" + "<b>"+ "Condition: "+ "</b>" + Condition)
-   layer.bindPopup(popup)
-}
-
+  filter: f => f.properties.Type === "Roadside Memorial",
+  pointToLayer: (f, ll) => L.circleMarker(ll, { radius: 6, color: 'yellow', fillColor: 'yellow', fillOpacity: 0.6, weight: 1 }),
+  onEachFeature(feature, layer) {
+    const p = feature.properties;
+    layer.bindPopup(
+      `<b>Title of Artwork:</b> ${p.Title_of_A}<br>` +
+      `<b>Lead Artist:</b> ${p.Lead_Artis}<br>` +
+      `<b>Type:</b> ${p.Type}<br>` +
+      `<b>Condition:</b> ${p.Condition}`
+    );
+  }
 });
+
 const SculptureLayer = L.geoJson(all_artworks, {
-filter: function(feature, layer) {
-return (feature.properties.Type === "Sculpture");
-},
-pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
-onEachFeature : function(feature,layer) {
-const Title_of_A = feature.properties.Title_of_A
-const Lead_Artis = feature.properties.Lead_Artis
-const Type = feature.properties.Type
-const Condition = feature.properties.Condition
-const Address = feature.properties.Address
-const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>"+ "Lead Artist: "+ "</b>" + Lead_Artis + "<br>"+ "<b>"+ "Type: "+ "</b>" + Type + "<br>" + "<b>"+ "Condition: "+ "</b>" + Condition +
- "<br>"  + "<b>"+ "Address: "+ "</b>" + Address)
-   layer.bindPopup(popup)
-}
-
+  filter: f => f.properties.Type === "Sculpture",
+  pointToLayer: (f, ll) => L.circleMarker(ll, { radius: 6, color: 'yellow', fillColor: 'yellow', fillOpacity: 0.6, weight: 1 }),
+  onEachFeature(feature, layer) {
+    const p = feature.properties;
+    layer.bindPopup(
+      `<b>Title of Artwork:</b> ${p.Title_of_A}<br>` +
+      `<b>Lead Artist:</b> ${p.Lead_Artis}<br>` +
+      `<b>Type:</b> ${p.Type}<br>` +
+      `<b>Condition:</b> ${p.Condition}<br>` +
+      `<b>Address:</b> ${p.Address}`
+    );
+  }
 });
 
-const StainedGlassLayer  = L.geoJson(all_artworks, {
-filter: function(feature, layer) {
-return (feature.properties.Type === "Stained Glass");
-},
-pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
-onEachFeature : function(feature,layer) {
-const Title_of_A = feature.properties.Title_of_A
-const Lead_Artis = feature.properties.Lead_Artis
-const Type = feature.properties.Type
-const Condition = feature.properties.Condition
-const Address = feature.properties.Address
-const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>"+ "Lead Artist: "+ "</b>" + Lead_Artis + "<br>"+ "<b>"+ "Type: "+ "</b>" + Type + "<br>" + "<b>"+ "Condition: "+ "</b>" + Condition +
- "<br>"  + "<b>"+ "Address: "+ "</b>" + Address)
-   layer.bindPopup(popup)
-}
 
+const StainedGlassLayer = L.geoJson(all_artworks, {
+  filter: f => f.properties.Type === "Stained Glass",
+  pointToLayer: (f, ll) => L.circleMarker(ll, { radius: 6, color: 'yellow', fillColor: 'yellow', fillOpacity: 0.6, weight: 1 }),
+  onEachFeature(feature, layer) {
+    const p = feature.properties;
+    layer.bindPopup(
+      `<b>Title of Artwork:</b> ${p.Title_of_A}<br>` +
+      `<b>Lead Artist:</b> ${p.Lead_Artis}<br>` +
+      `<b>Type:</b> ${p.Type}<br>` +
+      `<b>Condition:</b> ${p.Condition}<br>` +
+      `<b>Address:</b> ${p.Address}`
+    );
+  }
 });
 
 const TacticalUrbanismLayer = L.geoJson(all_artworks, {
-filter: function(feature, layer) {
-return (feature.properties.Type === "Tactical Urbanism");
-},
-pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
-onEachFeature : function(feature,layer) {
-const Title_of_A = feature.properties.Title_of_A
-const Lead_Artis = feature.properties.Lead_Artis
-const Type = feature.properties.Type
-const Condition = feature.properties.Condition
-const Address = feature.properties.Address
-const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>"+ "Lead Artist: "+ "</b>" + Lead_Artis + "<br>"+ "<b>"+ "Type: "+ "</b>" + Type + "<br>" + "<b>"+ "Condition: "+ "</b>" + Condition +
- "<br>"  + "<b>"+ "Address: "+ "</b>" + Address)
-   layer.bindPopup(popup)
-}
-
+  filter: f => f.properties.Type === "Tactical Urbanism",
+  pointToLayer: (f, ll) => L.circleMarker(ll, { radius: 6, color: 'yellow', fillColor: 'yellow', fillOpacity: 0.6, weight: 1 }),
+  onEachFeature(feature, layer) {
+    const p = feature.properties;
+    layer.bindPopup(
+      `<b>Title of Artwork:</b> ${p.Title_of_A}<br>` +
+      `<b>Lead Artist:</b> ${p.Lead_Artis}<br>` +
+      `<b>Type:</b> ${p.Type}<br>` +
+      `<b>Condition:</b> ${p.Condition}<br>` +
+      `<b>Address:</b> ${p.Address}`
+    );
+  }
 });
 
-    const allArtworksLayer = L.geoJson(all_artworks, {
-          pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
-    onEachFeature : function(feature,layer) {
-    layer.on('mouseover', function() {
-    layer.setStyle({
-        fillColor: 'green',
-        weight: 4
-    });
-});
-    layer.on('mouseout', function() {
-    layer.setStyle({
-        fillColor: 'yellow',
-        weight: 4
-    });
-});
-          const Title_of_A = feature.properties.Title_of_A
-          const Lead_Artis = feature.properties.Lead_Artis
-          const Type = feature.properties.Type
-          const Condition = feature.properties.Condition
-          const Address = feature.properties.Address
-          const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>"+ "Lead Artist: "+ "</b>" + Lead_Artis + "<br>"+ "<b>"+ "Type: "+ "</b>" + Type + "<br>" + "<b>"+ "Condition: "+ "</b>" + Condition +
-           "<br>"  + "<b>"+ "Address: "+ "</b>" + Address)
-             layer.bindPopup(popup)
-          }
-      }).addTo(map);
+const allArtworksLayer = L.geoJson(all_artworks, {
+  pointToLayer: (f, ll) => L.circleMarker(ll, { radius: 6, color: 'yellow', fillColor: 'yellow', fillOpacity: 0.6, weight: 1 }),
+  onEachFeature(feature, layer) {
+    const p = feature.properties;
+    layer.bindPopup(
+      `<b>Title of Artwork:</b> ${p.Title_of_A}<br>` +
+      `<b>Lead Artist:</b> ${p.Lead_Artis}<br>` +
+      `<b>Type:</b> ${p.Type}<br>` +
+      `<b>Condition:</b> ${p.Condition}<br>` +
+      `<b>Address:</b> ${p.Address}`
+    );
+    layer.on('mouseover', () => layer.setStyle({ fillColor: 'green', weight: 4 }));
+    layer.on('mouseout',  () => layer.setStyle({ fillColor: 'yellow', weight: 1 }));
+  }
+}).addTo(map);
+
 
 
 const federalPromiseZoneLayer = L.geoJson(
@@ -714,21 +694,17 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
       });
 
 
-                const collections2Layer = L.geoJson(collections2, {
-          pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 2 });
-          },
-    onEachFeature : function(feature,layer) {
-    layer.on('mouseover', function() {
-    layer.setStyle({
-        fillColor: 'red',
-        weight: 4
-    });
-});
-    layer.on('mouseout', function() {
-    layer.setStyle({
-        fillColor: 'white',
-        weight: 4
-    });
+const collections2Layer = L.geoJson(collections2, {
+  pointToLayer: (f, ll) => L.circleMarker(ll, { radius: 6, color: 'yellow', fillColor: 'white', fillOpacity: 0.6, weight: 2 }),
+  onEachFeature(feature, layer) {
+    const p = feature.properties;
+    layer.bindPopup(
+      `<b>Title of Work</b> ${p.Title_of_work}<br>` +
+      `<b>Address:</b> ${p.Address}`
+    );
+    layer.on('mouseover', () => layer.setStyle({ fillColor: 'red', weight: 4 }));
+    layer.on('mouseout',  () => layer.setStyle({ fillColor: 'white', weight: 2 }));
+  }
 });
 
 
@@ -741,21 +717,19 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
           }
       });
 
-              const womenLayer = L.geoJson(women, {
-          pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
-    onEachFeature : function(feature,layer) {
-    layer.on('mouseover', function() {
-    layer.setStyle({
-        fillColor: 'green',
-        weight: 4
-    });
+const womenLayer = L.geoJson(women, {
+  pointToLayer: (f, ll) => L.circleMarker(ll, { radius: 6, color: '#ca0050', fillColor: '#ca0050', fillOpacity: 0.6, weight: 1 }),
+  onEachFeature(feature, layer) {
+    const p = feature.properties;
+    layer.bindPopup(
+      `<b>Title of Artwork:</b> ${p.Title_of_A}<br>` +
+      `<b>Address:</b> ${p.Address}`
+    );
+    layer.on('mouseover', () => layer.setStyle({ fillColor: 'green', weight: 4 }));
+    layer.on('mouseout',  () => layer.setStyle({ fillColor: '#ca0050', weight: 1 }));
+  }
 });
-    layer.on('mouseout', function() {
-    layer.setStyle({
-        fillColor: '#ca0050',
-        weight: 4
-    });
-});
+
 
           const title = feature.properties.Title_of_A
           const Address = feature.properties.Address
@@ -765,21 +739,19 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
           }
       });
 
-                   const blackLayer  = L.geoJson(Black, {
-          pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
-    onEachFeature : function(feature,layer) {
-    layer.on('mouseover', function() {
-    layer.setStyle({
-        fillColor: 'green',
-        weight: 4
-    });
+const blackLayer = L.geoJson(Black, {
+  pointToLayer: (f, ll) => L.circleMarker(ll, { radius: 6, color: '#0273c4', fillColor: '#0273c4', fillOpacity: 0.6, weight: 1 }),
+  onEachFeature(feature, layer) {
+    const p = feature.properties;
+    layer.bindPopup(
+      `<b>Title of Artwork:</b> ${p.Title_of_A}<br>` +
+      `<b>Address:</b> ${p.Address}`
+    );
+    layer.on('mouseover', () => layer.setStyle({ fillColor: 'green', weight: 4 }));
+    layer.on('mouseout',  () => layer.setStyle({ fillColor: '#0273c4', weight: 1 }));
+  }
 });
-    layer.on('mouseout', function() {
-    layer.setStyle({
-        fillColor: '#0273c4',
-        weight: 4
-    });
-});
+
 
           const title = feature.properties.Title_of_A
           const Address = feature.properties.Address
@@ -789,21 +761,19 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
           }
       });
 
-                   const latinoLayer = L.geoJson(Latino, {
-          pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
-    onEachFeature : function(feature,layer) {
-    layer.on('mouseover', function() {
-    layer.setStyle({
-        fillColor: 'green',
-        weight: 4
-    });
+const latinoLayer = L.geoJson(Latino, {
+  pointToLayer: (f, ll) => L.circleMarker(ll, { radius: 6, color: '#f77b11', fillColor: '#f77b11', fillOpacity: 0.6, weight: 1 }),
+  onEachFeature(feature, layer) {
+    const p = feature.properties;
+    layer.bindPopup(
+      `<b>Title of Artwork:</b> ${p.Title_of_A}<br>` +
+      `<b>Address:</b> ${p.Address}`
+    );
+    layer.on('mouseover', () => layer.setStyle({ fillColor: 'green', weight: 4 }));
+    layer.on('mouseout',  () => layer.setStyle({ fillColor: '#f77b11', weight: 1 }));
+  }
 });
-    layer.on('mouseout', function() {
-    layer.setStyle({
-        fillColor: '#f77b11',
-        weight: 4
-    });
-});
+
 
           const title = feature.properties.Title_of_A
           const Address = feature.properties.Address
@@ -813,20 +783,17 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
           }
       });
 
-                   const asianLayer   = L.geoJson(Asian_artists, {
-          pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
-    onEachFeature : function(feature,layer) {
-    layer.on('mouseover', function() {
-    layer.setStyle({
-        fillColor: 'green',
-        weight: 4
-    });
-});
-    layer.on('mouseout', function() {
-    layer.setStyle({
-        fillColor: 'yellow',
-        weight: 4
-    });
+const asianLayer = L.geoJson(Asian_artists, {
+  pointToLayer: (f, ll) => L.circleMarker(ll, { radius: 6, color: 'yellow', fillColor: 'yellow', fillOpacity: 0.6, weight: 1 }),
+  onEachFeature(feature, layer) {
+    const p = feature.properties;
+    layer.bindPopup(
+      `<b>Title of Artwork:</b> ${p.Title_of_A}<br>` +
+      `<b>Address:</b> ${p.Address}`
+    );
+    layer.on('mouseover', () => layer.setStyle({ fillColor: 'green', weight: 4 }));
+    layer.on('mouseout',  () => layer.setStyle({ fillColor: 'yellow', weight: 1 }));
+  }
 });
 
 
