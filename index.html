@@ -507,11 +507,7 @@ const OtherLayer  = L.geoJson(all_artworks, {
 filter: function(feature, layer) {
 return (feature.properties.Type === "Other");
 },
-pointToLayer: function(feature,coordinates) {
-    return L.circle(coordinates, {
-       color: 'yellow',
-       weight: 1//step4
-    });
+pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
 },
 onEachFeature : function(feature,layer) {
 const Title_of_A = feature.properties.Title_of_A
@@ -531,11 +527,7 @@ const RoadsideMemorialLayer = L.geoJson(all_artworks, {
 filter: function(feature, layer) {
 return (feature.properties.Type === "Roadside Memorial");
 },
-pointToLayer: function(feature,coordinates) {
-    return L.circle(coordinates, {
-       color: 'yellow',
-       weight: 1//step4
-    });
+pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
 },
 onEachFeature : function(feature,layer) {
 const Title_of_A = feature.properties.Title_of_A
@@ -553,11 +545,7 @@ const SculptureLayer = L.geoJson(all_artworks, {
 filter: function(feature, layer) {
 return (feature.properties.Type === "Sculpture");
 },
-pointToLayer: function(feature,coordinates) {
-    return L.circle(coordinates, {
-       color: 'yellow',
-       weight: 1//step4
-    });
+pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
 },
 onEachFeature : function(feature,layer) {
 const Title_of_A = feature.properties.Title_of_A
@@ -576,11 +564,7 @@ const StainedGlassLayer  = L.geoJson(all_artworks, {
 filter: function(feature, layer) {
 return (feature.properties.Type === "Stained Glass");
 },
-pointToLayer: function(feature,coordinates) {
-    return L.circle(coordinates, {
-       color: 'yellow',
-       weight: 1//step4
-    });
+pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
 },
 onEachFeature : function(feature,layer) {
 const Title_of_A = feature.properties.Title_of_A
@@ -599,11 +583,7 @@ const TacticalUrbanismLayer = L.geoJson(all_artworks, {
 filter: function(feature, layer) {
 return (feature.properties.Type === "Tactical Urbanism");
 },
-pointToLayer: function(feature,coordinates) {
-    return L.circle(coordinates, {
-       color: 'yellow',
-       weight: 1//step4
-    });
+pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
 },
 onEachFeature : function(feature,layer) {
 const Title_of_A = feature.properties.Title_of_A
@@ -619,11 +599,7 @@ const popup = ( "<b>"+ "Title of Artwork: "+ "</b>" + Title_of_A + "<br>" + "<b>
 });
 
     const allArtworksLayer = L.geoJson(all_artworks, {
-          pointToLayer: function(feature,coordinates) {
-              return L.circle(coordinates, {
-                 color: 'yellow',
-                 weight: 1//step4
-              });
+          pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
           },
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
@@ -748,11 +724,7 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
 
 
                 const collections2Layer = L.geoJson(collections2, {
-          pointToLayer: function(feature,coordinates) {
-              return L.circle(coordinates, {
-                 color: 'white',
-                 weight: 2//step4
-              });
+          pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 2 });
           },
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
@@ -779,11 +751,7 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
       });
 
               const womenLayer = L.geoJson(women, {
-          pointToLayer: function(feature,coordinates) {
-              return L.circle(coordinates, {
-                 color: '#ca0050',
-                 weight: 1//step4
-              });
+          pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
           },
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
@@ -808,11 +776,7 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
       });
 
                    const blackLayer  = L.geoJson(Black, {
-          pointToLayer: function(feature,coordinates) {
-              return L.circle(coordinates, {
-                 color: '#0273c4',
-                 weight: 1
-              });
+          pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
           },
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
@@ -837,11 +801,7 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
       });
 
                    const latinoLayer = L.geoJson(Latino, {
-          pointToLayer: function(feature,coordinates) {
-              return L.circle(coordinates, {
-                 color: '#f77b11',
-                 weight: 1//step4
-              });
+          pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
           },
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
@@ -866,11 +826,7 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
       });
 
                    const asianLayer   = L.geoJson(Asian_artists, {
-          pointToLayer: function(feature,coordinates) {
-              return L.circle(coordinates, {
-                 color: 'yellow',
-                 weight: 1//step4
-              });
+          pointToLayer: (f, latlng) => L.circleMarker(latlng, { radius: 6, color: 'yellow', weight: 1 });
           },
     onEachFeature : function(feature,layer) {
     layer.on('mouseover', function() {
@@ -999,9 +955,6 @@ fetch('js/Indianapolis_Parks.geojson')
 fetch('js/IN_DNR_Properties.geojson')
   .then(r => r.json())
   .then(gj => dnrLayer.addData(gj));
-        fetch('js/indy_cultural_trail.geojson')
-  .then(r => r.json())
-  .then(gj => culturalTrailLayer.addData(gj));
 
 fetch('js/white_river_state_park.geojson')
   .then(r => r.json())
