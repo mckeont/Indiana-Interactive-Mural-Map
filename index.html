@@ -62,7 +62,7 @@
           If you see an inaccuracy or identify work that was not captured please share those details
           with us by visiting this link:
           <a href= "https://docs.google.com/forms/d/1P6JC3GGyvYTG_w5NEZn0vfhwka5OxkefJDC4_NkRoUk/edit">link</a>
-         <br> </br>  Addresses are not disclosed for residential sites or roadside memorials to honor privacy </p>
+         <br> <br>  Addresses are not disclosed for residential sites or roadside memorials to honor privacy </p>
 
     </footer>
 
@@ -195,99 +195,79 @@ const dnrLayer = L.geoJSON(null, {
 });
 
 
-        const artworkCollegeLayer = L.geoJson(art1500mcollege, {
-          pointToLayer: function(feature,coordinates) {
-              return L.circle(coordinates, {
-                 color: 'purple',
-                 weight: 2
-              });
-          },
-    onEachFeature : function(feature,layer) {
+const artworkCollegeLayer = L.geoJson(art1500mcollege, {
+  pointToLayer: function(feature, coordinates) {
+    return L.circle(coordinates, { color: 'purple', weight: 2 });
+  },
+  onEachFeature: function(feature, layer) {
     layer.on('mouseover', function() {
-    layer.setStyle({
-        fillColor: 'red',
-        weight: 4
+      layer.setStyle({ fillColor: 'red', weight: 4 });
     });
-});
     layer.on('mouseout', function() {
-    layer.setStyle({
-        fillColor: 'purple',
-        weight: 4
+      layer.setStyle({ fillColor: 'purple', weight: 4 });
     });
+
+    const title = feature.properties.Title_of_A;
+    const leadartist = feature.properties.Lead_Artis;
+    const Address = feature.properties.Address;
+
+    const popup =
+      "<b>Artwork Title: </b>" + title +
+      "<br><b>Lead Artist: </b>" + leadartist +
+      "<br><b>Address: </b>" + Address;
+
+    layer.bindPopup(popup);
+  }
 });
 
-
-          const title = feature.properties.Title_of_A
-          const leadartist = feature.properties.Lead_Artis
-          const Address = feature.properties.Address
-
-          const popup = ( "<b>"+ "Artwork Title: "+ "<b>" + title + "<b>"+ "Lead Artist: "+ "<b>" + leadartist
-         + "</br>" + "<b>"+ "Address: "+ "<b>" + Address)
-             layer.bindPopup(popup)
-          }
-      });
-
-          const artworkBusLayer = L.geoJson(artwork150meterbus, {
-          pointToLayer: function(feature,coordinates) {
-              return L.circle(coordinates, {
-                 color: '#2a9d8f',
-                 weight: 2
-              });
-          },
-    onEachFeature : function(feature,layer) {
+const artworkBusLayer = L.geoJson(artwork150meterbus, {
+  pointToLayer: function(feature, coordinates) {
+    return L.circle(coordinates, { color: '#2a9d8f', weight: 2 });
+  },
+  onEachFeature: function(feature, layer) {
     layer.on('mouseover', function() {
-    layer.setStyle({
-        fillColor: 'red',
-        weight: 4
+      layer.setStyle({ fillColor: 'red', weight: 4 });
     });
-});
     layer.on('mouseout', function() {
-    layer.setStyle({
-        fillColor: '#2a9d8f',
-        weight: 4
+      layer.setStyle({ fillColor: '#2a9d8f', weight: 4 });
     });
+
+    const title = feature.properties.Title_of_A;
+    const leadartist = feature.properties.Lead_Artis;
+    const Address = feature.properties.Address;
+
+    const popup =
+      "<b>Artwork Title: </b>" + title +
+      "<br><b>Lead Artist: </b>" + leadartist +
+      "<br><b>Address: </b>" + Address;
+
+    layer.bindPopup(popup);
+  }
 });
 
-          const title = feature.properties.Title_of_A
-          const leadartist = feature.properties.Lead_Artis
-         const Address = feature.properties.Address
-
-          const popup = ( "<b>"+ "Artwork Title: "+ "<b>" + title + "<br>" + "<b>"+ "Lead Artist: "+ "<b>" + leadartist
-        + "</br>" + "<b>"+ "Address: "+ "<b>" + Address)
-             layer.bindPopup(popup)
-          }
-      });
-
-
-            const k12Layer = L.geoJson(k12schools, {
-          pointToLayer: function(feature,coordinates) {
-              return L.circle(coordinates, {
-                 color: 'green',
-                 weight: 2//step4
-              });
-          },
-    onEachFeature : function(feature,layer) {
+const k12Layer = L.geoJson(k12schools, {
+  pointToLayer: function(feature, coordinates) {
+    return L.circle(coordinates, { color: 'green', weight: 2 });
+  },
+  onEachFeature: function(feature, layer) {
     layer.on('mouseover', function() {
-    layer.setStyle({
-        fillColor: 'red',
-        weight: 4
+      layer.setStyle({ fillColor: 'red', weight: 4 });
     });
-});
     layer.on('mouseout', function() {
-    layer.setStyle({
-        fillColor: 'green',
-        weight: 4
+      layer.setStyle({ fillColor: 'green', weight: 4 });
     });
+
+    const school = feature.properties.SCHOOL;
+    const Address = feature.properties.Address;
+
+    const popup =
+      "<b>Name: </b>" + school +
+      "<br><b>Address: </b>" + Address;
+
+    layer.bindPopup(popup);
+  }
 });
 
-
-          const school = feature.properties.SCHOOL
-          const Address = feature.properties.Address
-
-          const popup = ( "<b>"+ "Name: "+ "<b>" + school +  "<br>"+ "<b>"+ "Address: "+ "<b>" + Address)
-             layer.bindPopup(popup)
-          }
-      });
 
       const busesLayer  = L.geoJson(buses, {
            pointToLayer: function(feature,coordinates) {
@@ -605,7 +585,7 @@ const federalPromiseZoneLayer = L.geoJson(
     onEachFeature: (feature, layer) => {
       layer.on('mouseover', () => layer.setStyle({ fillColor: 'yellow', weight: 4 }));
       layer.on('mouseout',  () => layer.setStyle({ fillColor: 'white',  weight: 4 }));
-      layer.bindPopup("<b>Indianapolis Promise Zone");
+      layer.bindPopup("<b>Indianapolis Promise Zone</b>");
     }
   }
 );
@@ -616,7 +596,7 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
   onEachFeature: (feature, layer) => {
     layer.on('mouseover', () => layer.setStyle({ fillColor: 'white',  weight: 4 }));
     layer.on('mouseout',  () => layer.setStyle({ fillColor: '#7400b8', weight: 4 }));
-    layer.bindPopup("<b>Opportunity Zone");
+    layer.bindPopup("<b>Opportunity Zone</b>");
   }
 });
 
