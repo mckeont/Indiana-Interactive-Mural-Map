@@ -92,6 +92,36 @@
 <script src=js/opportunityzone.js></script>
 <script src=js/GSparcels.js></script>
 <script src=js/buses.js></script>
+
+    <script>
+// 1) Helper
+function parseArtists(raw) {
+  if (!raw) return [];
+  const s = String(raw).trim();
+  if (s.includes(";")) return s.split(";").map(x => x.trim()).filter(Boolean);
+  const parts = s.split(/\s+(?:and|&|\+)\s+/i).map(x => x.trim()).filter(Boolean);
+  return parts.length > 1 ? parts : [s];
+}
+
+// 2) Layer from the raw data object loaded by js/all_artworks.js
+const multiArtistLayer = L.geoJSON(window.all_artworks, {
+  filter: f => parseArtists(f?.properties?.Lead_Artis).length >= 2,
+  pointToLayer: (f, latlng) => L.circle(latlng, { color: '#8a2be2', weight: 2, fillOpacity: 0.5 }),
+  onEachFeature: (f, layer) => {
+    const p = f.properties || {};
+    const artists = parseArtists(p.Lead_Artis);
+    layer.bindPopup(
+      `<b>Title:</b> ${p.Title_of_A || '—'}<br>` +
+      `<b>Creators (${artists.length}):</b> ${artists.join("; ")}<br>` +
+      `<b>Type:</b> ${p.Type || '—'}<br>` +
+      (p.Address ? `<b>Address:</b> ${p.Address}` : '')
+    );
+    layer.on('mouseover', () => layer.setStyle({ fillOpacity: 0.7, weight: 3 }));
+    layer.on('mouseout',  () => layer.setStyle({ fillOpacity: 0.5, weight: 2 }));
+  }
+});
+</script>
+
     <script>
 
 const parksLayer = L.geoJSON(null, {
