@@ -674,18 +674,18 @@ const opportunityZoneLayer = L.geoJson(window.opportunityzone, {
       });
 
 
-const collections2Layer = L.geoJson(collections2, {
-  pointToLayer: (f, ll) => L.circleMarker(ll, { radius: 3, color: 'yellow', fillColor: 'white', fillOpacity: 0.6, weight: 2 }),
-  onEachFeature(feature, layer) {
-    const p = feature.properties;
-    layer.bindPopup(
-      `<b>Title of Work</b> ${p.Title_of_work}<br>` +
-      `<b>Address:</b> ${p.Address}`
-    );
-    layer.on('mouseover', () => layer.setStyle({ fillColor: 'red', weight: 4 }));
-    layer.on('mouseout',  () => layer.setStyle({ fillColor: 'white', weight: 2 }));
-  }
-});
+// const collections2Layer = L.geoJson(collections2, {
+//   pointToLayer: (f, ll) => L.circleMarker(ll, { radius: 3, color: 'yellow', fillColor: 'white', fillOpacity: 0.6, weight: 2 }),
+//   onEachFeature(feature, layer) {
+//     const p = feature.properties;
+//     layer.bindPopup(
+//       `<b>Title of Work</b> ${p.Title_of_work}<br>` +
+//       `<b>Address:</b> ${p.Address}`
+//     );
+//     layer.on('mouseover', () => layer.setStyle({ fillColor: 'red', weight: 4 }));
+//     layer.on('mouseout',  () => layer.setStyle({ fillColor: 'white', weight: 2 }));
+//   }
+// });
 
 const womenLayer = L.geoJson(women, {
   pointToLayer: (f, ll) => L.circleMarker(ll, { radius: 3, color: '#ca0050', fillColor: '#ca0050', fillOpacity: 0.6, weight: 1 }),
