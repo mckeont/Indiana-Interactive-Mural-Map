@@ -954,46 +954,53 @@ const type3Layer = L.geoJSON(null, {
 
 
             const sourceLayers = {
-             "All Artworks": all_artworks,
-             "ZIP Codes": ZIP_Code_Boundaries,
-             "Schools": k12,
-             "IndyGo Bus Routes" : buses,
-             "KIB Greenspaces" : GSparcels,
-             "Indy Parks": parksLayer,
-                // White River State Park
-             "Indiana DNR Properties": dnrLayer,
-                // Indianapolis Cultural Trail
-             "Opportunity Zone": opportunityzone,
-             "Indianapolis Promise Zone": FederalPromiseZone,
-             "Top Three Wealthy Zipcodes": mostwealthytop3,
-             "Top Three Dangerous Zipcodes": DangerousTop3, 
-             "Top Three Most Impoverished Zipcodes": mostpooresttop3,
-             "Majority Ethnicity by Area": ethnicity, // need to make the colors more distinct
-             "Artworks by Women Creative": women,
-             "Artworks by Black Creative": black,
-             "Artworks by Latino/a/e Creative": latino,
-             "Artworks by Asian Creative": asian,
-             "Artwork 150 Meters from a Bus Stop": artworkbus,
-             "Artwork 1500 Meters from a College": artworkcollege,
-             "Artworks by 2+ Creatives": multiArtistLayer,
-            // Artworks by 1 or more Creative
-             "Mural" : Mural,
-             "Graffiti" : Graffiti,
-             "Sculptural" : Sculpture,
-             "Architectural" : Architectural,
-             "Stained Glass" : stainedGlass,
-             "Tactical Urbanism" : tacticalUrbanism,
-             "Roadside Memorial" : roadsideMemorial,
-             "Hand Lettered Sign" : handletteredSign,
-             "Other" : Other,
-             "Collections": collections2,
-             "Census tract with no artwork(2010)": type1_2010Layer,
-            "Census tract with no artwork (2020)": type1_2020Layer,
-            "Zone with no artwork within 1 mile": type2Layer,
-            "Zone with low income + low public art access": type3Layer,
-         }
-      
+  "All Artworks": allArtworksLayer,
+  "ZIP Codes": zipCodeBoundariesLayer,
+  "Schools": k12Layer,
+  "IndyGo Bus Routes": busesLayer,
+  "KIB Greenspaces": GSparcelsLayer,
+  "Indy Parks": parksLayer,
+  "Indiana DNR Properties": dnrLayer,
+
+  "Opportunity Zone": opportunityzone,               // if these two are your custom prepared layers, keep as-is
+  "Indianapolis Promise Zone": FederalPromiseZone,    // (they already use distinct names)
+
+  "Top Three Wealthy Zipcodes": mostWealthyTop3Layer,
+  "Top Three Dangerous Zipcodes": DangerousTop3,
+  "Top Three Most Impoverished Zipcodes": mostPoorestTop3Layer,
+  "Majority Ethnicity by Area": ethnicityLayer,
+
+  "Artworks by Women Creative": womenLayer,
+  "Artworks by Black Creative": blackLayer,
+  "Artworks by Latino/a/e Creative": latinoLayer,
+  "Artworks by Asian Creative": asianLayer,
+
+  "Artwork 150 Meters from a Bus Stop": artworkBusLayer,
+  "Artwork 1500 Meters from a College": artworkCollegeLayer,
+
+  "Artworks by 2+ Creatives": multiArtistLayer,
+
+  // Type-specific
+  "Mural": MuralLayer,
+  "Graffiti": GraffitiLayer,
+  "Sculptural": SculptureLayer,
+  "Architectural": ArchitecturalLayer,
+  "Stained Glass": StainedGlassLayer,
+  "Tactical Urbanism": TacticalUrbanismLayer,
+  "Roadside Memorial": RoadsideMemorialLayer,
+  "Hand Lettered Sign": HandLetteredSignLayer,
+  "Other": OtherLayer,
+
+  "Collections": collections2Layer,
+
+  "Census tract with no artwork(2010)": type1_2010Layer,
+  "Census tract with no artwork (2020)": type1_2020Layer,
+  "Zone with no artwork within 1 mile": type2Layer,
+  "Zone with low income + low public art access": type3Layer,
+};
+
 const control = L.control.layers(null, sourceLayers, { collapsed: true }).addTo(map);
+
 
 fetch('js/Type1_2010.json').then(r => r.json()).then(gj => type1_2010Layer.addData(gj));
 fetch('js/Type1_2020.json').then(r => r.json()).then(gj => type1_2020Layer.addData(gj));
